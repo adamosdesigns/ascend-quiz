@@ -275,7 +275,9 @@ const careers = {
 function Logo({ style={} }) {
   return (
     <div style={{ display: "flex", justifyContent: "center", marginBottom: 32, ...style }}>
-      <img src="/logo.png" alt="Ascend Modern Career Guidance" style={{ height: 44, width: "auto", objectFit: "contain" }} />
+      <a href="http://ascendcareerguidance.com" target="_blank" rel="noopener noreferrer" style={{ display: "inline-block", lineHeight: 0 }}>
+        <img src="/logo.png" alt="Ascend Modern Career Guidance" style={{ height: 44, width: "auto", objectFit: "contain" }} />
+      </a>
     </div>
   );
 }
@@ -316,17 +318,16 @@ async function sendNotification(name, email, careerName) {
 }
 
 // ── DESIGN TOKENS ─────────────────────────────────────────────────────────────
-const FONTS = `@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@600;700@import url('https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&display=swap');family=Source+Sans+3:wght@400;500;600@import url('https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&display=swap');display=swap');`;
+const FONTS = `@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@600;700&family=Source+Sans+3:wght@400;500;600&display=swap');`;
 
 const S = {
   bg: "#020617",
   bgCard: "#0b1220",
-  border: "rgba(255,255,255,0.07)",
+  border: "rgba(255,255,255,0.09)",
   text: "#f8fafc",
-  muted: "#94a3b8",
-  dim: "#475569",
+  muted: "#b8c4d4",   // lifted from #94a3b8 for AA contrast
+  dim: "#6b7f99",     // lifted from #475569 for readability
   accent: "#3b82f6",
-  // display font = Syne (bold geometric sans), body = DM Sans
   display: "'Oswald', sans-serif",
   body: "'Source Sans 3', sans-serif",
 };
@@ -611,7 +612,7 @@ function Results({ scores }) {
           </div>
 
           {/* ── CTA COMPARISON CARDS ── */}
-          <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
+          <div className="cta-grid" style={{ display: "flex", flexDirection: "column", gap: 12 }}>
 
             {/* Core card */}
             <div style={{ background: "rgba(255,255,255,0.03)", border: `1px solid ${S.border}`, borderRadius: 14, padding: "22px 22px 18px", position: "relative" }}>
@@ -746,6 +747,68 @@ function Results({ scores }) {
   );
 }
 
+
+// ── ADA ACCESSIBILITY TOOLBAR ─────────────────────────────────────────────────
+function ADAToolbar() {
+  const [open, setOpen] = useState(false);
+  const [hc, setHc] = useState(false);
+  const [large, setLarge] = useState(false);
+  const [motion, setMotion] = useState(false);
+
+  function toggleHC() {
+    const next = !hc; setHc(next);
+    document.body.classList.toggle("hc-mode", next);
+  }
+  function toggleLarge() {
+    const next = !large; setLarge(next);
+    document.body.classList.toggle("large-text", next);
+  }
+  function toggleMotion() {
+    const next = !motion; setMotion(next);
+    document.body.classList.toggle("reduce-motion", next);
+  }
+
+  return (
+    <>
+      {open && (
+        <div className="ada-panel" role="dialog" aria-label="Accessibility options" aria-modal="false">
+          <div style={{ fontFamily: "'Source Sans 3', sans-serif", fontSize: 12, color: "#6b7f99", letterSpacing: "0.1em", textTransform: "uppercase", marginBottom: 12 }}>Accessibility</div>
+          <button className="ada-btn" onClick={toggleHC} aria-pressed={hc}>
+            <span aria-hidden="true">🔆</span>
+            <span>{hc ? "Normal Contrast" : "High Contrast"}</span>
+          </button>
+          <button className="ada-btn" onClick={toggleLarge} aria-pressed={large}>
+            <span aria-hidden="true">🔤</span>
+            <span>{large ? "Normal Text" : "Larger Text"}</span>
+          </button>
+          <button className="ada-btn" onClick={toggleMotion} aria-pressed={motion}>
+            <span aria-hidden="true">⏸</span>
+            <span>{motion ? "Allow Motion" : "Reduce Motion"}</span>
+          </button>
+          <button className="ada-btn" onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })} aria-label="Return to top of page">
+            <span aria-hidden="true">⬆</span>
+            <span>Back to Top</span>
+          </button>
+        </div>
+      )}
+      <button
+        className="ada-trigger"
+        onClick={() => setOpen(o => !o)}
+        aria-label={open ? "Close accessibility menu" : "Open accessibility menu"}
+        aria-expanded={open}
+        aria-haspopup="dialog"
+        title="Accessibility options"
+      >
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <circle cx="12" cy="4.5" r="1.5" fill="white"/>
+          <path d="M7 8h10l-1 4h-3v7h-2v-7H8L7 8z" fill="white"/>
+          <path d="M9 12.5l-2 4.5M15 12.5l2 4.5" stroke="white" strokeWidth="1.5" strokeLinecap="round"/>
+        </svg>
+      </button>
+    </>
+  );
+}
+
 // ── APP ───────────────────────────────────────────────────────────────────────
 export default function App() {
   const [screen, setScreen] = useState("hero");
@@ -753,12 +816,47 @@ export default function App() {
 
   return (
     <div style={{ minHeight: "100vh", background: "linear-gradient(180deg, #020617 0%, #0f172a 100%)" }}>
-      <style>{`${FONTS} * { box-sizing: border-box; margin: 0; padding: 0; } ::-webkit-scrollbar { width: 5px; } ::-webkit-scrollbar-track { background: #020617; } ::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.08); border-radius: 3px; }`}</style>
-      {screen === "hero"    && <Hero onStart={() => setScreen("quiz")} />}
-      {screen === "quiz"    && <Quiz onComplete={s => { setScores(s); setScreen("gate"); }} />}
-      {screen === "gate"    && <EmailGate scores={scores} onSubmit={() => setScreen("loading")} />}
-      {screen === "loading" && <Loading onDone={() => setScreen("results")} />}
-      {screen === "results" && <Results scores={scores} />}
+      <a href="#main-content" className="skip-link">Skip to main content</a>
+      <style>{`
+  ${FONTS}
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  ::-webkit-scrollbar { width: 5px; }
+  ::-webkit-scrollbar-track { background: #020617; }
+  ::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.14); border-radius: 3px; }
+  /* Desktop: side-by-side tier cards */
+  @media (min-width: 700px) {
+    .cta-grid { flex-direction: row !important; align-items: stretch; }
+    .cta-grid > * { flex: 1; min-width: 0; }
+  }
+  /* ADA toolbar */
+  .ada-panel { position: fixed; bottom: 72px; right: 16px; background: #0f1a2e; border: 1px solid rgba(255,255,255,0.15); border-radius: 14px; padding: 16px; width: 220px; z-index: 9999; box-shadow: 0 8px 32px rgba(0,0,0,0.5); }
+  .ada-btn { display: flex; align-items: center; gap: 10px; width: 100%; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; padding: 9px 12px; color: #f8fafc; font-family: 'Source Sans 3', sans-serif; font-size: 13px; cursor: pointer; margin-bottom: 6px; transition: background 0.15s; }
+  .ada-btn:last-child { margin-bottom: 0; }
+  .ada-btn:hover { background: rgba(255,255,255,0.12); }
+  .ada-btn:focus { outline: 2px solid #3b82f6; outline-offset: 2px; }
+  .ada-trigger { position: fixed; bottom: 16px; right: 16px; width: 48px; height: 48px; border-radius: 50%; background: #3b82f6; border: none; cursor: pointer; z-index: 9999; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 20px rgba(59,130,246,0.5); transition: transform 0.15s, box-shadow 0.15s; }
+  .ada-trigger:hover { transform: scale(1.08); box-shadow: 0 6px 28px rgba(59,130,246,0.65); }
+  .ada-trigger:focus { outline: 3px solid #93c5fd; outline-offset: 3px; }
+  /* High contrast mode */
+  body.hc-mode { filter: contrast(1.5) brightness(1.1); }
+  /* Large text mode */
+  body.large-text * { font-size: 110% !important; }
+  /* Reduced motion */
+  body.reduce-motion *, body.reduce-motion *::before, body.reduce-motion *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+  /* Focus outlines for keyboard nav */
+  :focus-visible { outline: 2px solid #3b82f6 !important; outline-offset: 3px !important; }
+  /* Skip link */
+  .skip-link { position: absolute; top: -100px; left: 16px; background: #3b82f6; color: #fff; padding: 8px 16px; border-radius: 6px; font-family: 'Source Sans 3', sans-serif; font-size: 14px; font-weight: 600; text-decoration: none; z-index: 99999; transition: top 0.2s; }
+  .skip-link:focus { top: 16px; }
+`}</style>
+      <main id="main-content">
+        {screen === "hero"    && <Hero onStart={() => setScreen("quiz")} />}
+        {screen === "quiz"    && <Quiz onComplete={s => { setScores(s); setScreen("gate"); }} />}
+        {screen === "gate"    && <EmailGate scores={scores} onSubmit={() => setScreen("loading")} />}
+        {screen === "loading" && <Loading onDone={() => setScreen("results")} />}
+        {screen === "results" && <Results scores={scores} />}
+      </main>
+      <ADAToolbar />
     </div>
   );
 }
