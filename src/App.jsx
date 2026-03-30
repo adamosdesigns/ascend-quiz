@@ -163,12 +163,12 @@ const careers = {
     tagline: "Master the market. Trade your way to freedom.",
     whyYou: "Your answers reveal someone who is analytically wired, comfortable working alone, and drawn to environments where skill and strategy — not people skills or physical labor — determine the outcome. Day trading is one of the few paths where your income is a direct reflection of how sharp your thinking is. You scored high on patience, data orientation, and risk tolerance, which are exactly the traits that separate profitable traders from the ones who wash out in month two. The learning curve is real, but for someone with your profile, it's a curve worth climbing.",
     opportunity: "Day trading is one of the few paths where your income is limited only by your capital and your edge — not by clients, hours, or inventory. Consistently profitable traders using prop firm funding can access $100K–$500K in buying power and keep a significant cut of the profits. Top retail traders document $10K–$100K+ months. The learning curve is real and the washout rate is high — but those who develop a genuine edge and iron discipline build an income stream that runs entirely on their own terms, from anywhere in the world, with no boss and no ceiling.",
-    standardUrl: "https://whop.com/ascend-career-guidance/day-trading-stocks-standard",
-    premiumUrl: "https://whop.com/ascend-career-guidance/day-trading-stocks-premium",
-    standardPrice: "$XX",
-    premiumPrice: "$XX",
-    standardDesc: "The core roadmap — everything you need to start building your trading edge from day one.",
-    premiumDesc: "Full system access, live sessions, community, and direct support to accelerate your path to profitability.",
+    coreUrl: "https://whop.com/ascend-career-guidance/day-trading-stocks-standard",
+    proUrl: "https://whop.com/ascend-career-guidance/day-trading-stocks-premium",
+    corePrice: "$34.99",
+    proPrice: "$47.99",
+    coreDesc: "The core roadmap — everything you need to start building your trading edge from day one.",
+    proDesc: "Full system access, live sessions, community, and direct support to accelerate your path to profitability.",
   },
   realestate: {
     name: "Real Estate",
@@ -177,12 +177,12 @@ const careers = {
     tagline: "The biggest wealth builder in history. Get in.",
     whyYou: "Your answers point to someone who thinks in assets, not hours. You're drawn to things you can own, touch, and build equity in over time — and you have the patience to play a longer game than most people your age are willing to play. Real estate rewards exactly that combination: strategic thinking, relationship-building, and the discipline to stay in when others panic. Whether it's wholesaling, flipping, or building a rental portfolio, you have the profile of someone who doesn't just participate in the market — you become the market.",
     opportunity: "Real estate has created more millionaires than any other asset class in history, and that's not an accident. A single rental property can generate $500–$2,000/month in passive cash flow. Flips routinely produce $20K–$80K in profit per deal. Wholesalers move contracts for $5K–$30K without ever owning the property. And the leverage available through conventional financing means you can control a $300K asset with $30K down — something no other investment class allows at that scale.",
-    standardUrl: "https://whop.com/ascend-career-guidance/real-estate-standard",
-    premiumUrl: "https://whop.com/ascend-career-guidance/real-estate-premium",
-    standardPrice: "$XX",
-    premiumPrice: "$XX",
-    standardDesc: "The complete Real Estate roadmap — from zero to your first deal, step by step.",
-    premiumDesc: "Premium access with deal analysis tools, mentorship calls, and an active investor community.",
+    coreUrl: "https://whop.com/ascend-career-guidance/real-estate-standard",
+    proUrl: "https://whop.com/ascend-career-guidance/real-estate-premium",
+    corePrice: "$34.99",
+    proPrice: "$47.99",
+    coreDesc: "The complete Real Estate roadmap — from zero to your first deal, step by step.",
+    proDesc: "Premium access with deal analysis tools, mentorship calls, and an active investor community.",
   },
   homeservices: {
     name: "Home Services",
@@ -191,12 +191,12 @@ const careers = {
     tagline: "Real work. Real money. No algorithm required.",
     whyYou: "You're a doer. Your answers show someone who gets energy from tangible results, prefers action over theory, and wants to see the direct connection between effort and income. Home services — pressure washing, detailing, lawn care, HVAC, cleaning, handyman work — is one of the most underestimated wealth-building paths available today. You don't need a degree, a large following, or a complex tech stack. You need a skill, a few tools, and the work ethic to show up. Based on your profile, you have all three.",
     opportunity: "The home services industry generates over $600 billion annually in the US alone — and it's almost entirely local, meaning the big platforms can't compete with you directly. A solo pressure washing operator can clear $800–$2,000 in a single day. A small cleaning company with three employees can generate $30K–$60K per month. The barrier to entry is low, the margins are high, and demand never disappears. People always need things cleaned, fixed, and maintained — recession or not.",
-    standardUrl: "https://whop.com/ascend-career-guidance/home-services-standard",
-    premiumUrl: "https://whop.com/ascend-career-guidance/home-services-premium",
-    standardPrice: "$XX",
-    premiumPrice: "$XX",
-    standardDesc: "Launch your home services business the right way — service selection, pricing, and first clients.",
-    premiumDesc: "Done-with-you system including scripts, marketing templates, and weekly group coaching.",
+    coreUrl: "https://whop.com/ascend-career-guidance/home-services-standard",
+    proUrl: "https://whop.com/ascend-career-guidance/home-services-premium",
+    corePrice: "$34.99",
+    proPrice: "$47.99",
+    coreDesc: "Launch your home services business the right way — service selection, pricing, and first clients.",
+    proDesc: "Done-with-you system including scripts, marketing templates, and weekly group coaching.",
   },
   shopify: {
     name: "Shopify Dropshipping",
@@ -205,12 +205,12 @@ const careers = {
     tagline: "Build a product brand without touching inventory.",
     whyYou: "Your answers reveal someone who is systems-oriented, comfortable with online tools, and motivated by building something scalable from scratch. Dropshipping lets you run a real e-commerce business without warehousing a single product. You test, you optimize, you scale what works — and you cut what doesn't. You scored high on patience with process, comfort with digital environments, and desire to build something you can eventually own or sell. That's the exact profile that separates operators who build real brands from the ones who quit after their first failed ad.",
     opportunity: "E-commerce is a $6 trillion global market and dropshipping removes the biggest barrier — inventory risk. Successful Shopify operators run 30–60% profit margins on winning products. A store doing $50K/month in revenue with a 40% margin nets $20K — and the business itself becomes an asset you can sell for 2–4x annual profit. The operators at the top aren't just selling products; they're building brands with loyal audiences, email lists, and repeat customers that compound in value over time.",
-    standardUrl: "https://whop.com/ascend-career-guidance/shopify-dropshipping-standard",
-    premiumUrl: "https://whop.com/ascend-career-guidance/shopify-dropshipping-premium",
-    standardPrice: "$XX",
-    premiumPrice: "$XX",
-    standardDesc: "Product research, store setup, and your first profitable ad — the complete beginner roadmap.",
-    premiumDesc: "Advanced scaling strategies, winning product vault, ad creatives, and 1-on-1 store reviews.",
+    coreUrl: "https://whop.com/ascend-career-guidance/shopify-dropshipping-standard",
+    proUrl: "https://whop.com/ascend-career-guidance/shopify-dropshipping-premium",
+    corePrice: "$34.99",
+    proPrice: "$47.99",
+    coreDesc: "Product research, store setup, and your first profitable ad — the complete beginner roadmap.",
+    proDesc: "Advanced scaling strategies, winning product vault, ad creatives, and 1-on-1 store reviews.",
   },
   sales: {
     name: "High Ticket Sales",
@@ -219,12 +219,12 @@ const careers = {
     tagline: "Close deals. Stack commissions. No ceiling.",
     whyYou: "You light up around people. Your answers show someone who is naturally persuasive, energized by high-stakes conversations, and motivated by the direct link between performance and pay. High ticket sales is one of the only careers where your income is almost entirely determined by how good you are — not your degree, not your resume, not your network. Closers who master the craft make $10K–$50K per month working remotely on commission. Based on your profile, you have the natural wiring. The roadmap will give you the skill.",
     opportunity: "The demand for skilled remote closers has never been higher. Coaches, course creators, agencies, and SaaS companies are all looking for people who can get on a call and convert. Top closers working on a 10–15% commission structure close $100K–$500K in deals per month — keeping $10K–$75K for themselves. Unlike most careers, there's no income cap, no seniority ladder, and no waiting for a promotion. You perform, you earn. The best closers are always hired, always needed, and always paid well.",
-    standardUrl: "https://whop.com/ascend-career-guidance/high-ticket-sales-standard",
-    premiumUrl: "https://whop.com/ascend-career-guidance/high-ticket-sales-premium-c7",
-    standardPrice: "$XX",
-    premiumPrice: "$XX",
-    standardDesc: "Sales psychology, call frameworks, and how to land your first remote closer role.",
-    premiumDesc: "Role placement support, live call reviews, objection training vault, and closer community.",
+    coreUrl: "https://whop.com/ascend-career-guidance/high-ticket-sales-standard",
+    proUrl: "https://whop.com/ascend-career-guidance/high-ticket-sales-premium-c7",
+    corePrice: "$34.99",
+    proPrice: "$47.99",
+    coreDesc: "Sales psychology, call frameworks, and how to land your first remote closer role.",
+    proDesc: "Role placement support, live call reviews, objection training vault, and closer community.",
   },
   affiliate: {
     name: "Affiliate Marketing",
@@ -233,12 +233,12 @@ const careers = {
     tagline: "Build once. Earn repeatedly. Sleep well.",
     whyYou: "Your answers point to someone who values independence, thinks strategically, and is willing to put in work upfront for payoffs that compound over time. Affiliate marketing is the closest thing to a legitimate passive income model that actually works — but only for people with the patience to build it right. You scored high on comfort with digital environments, long-term thinking, and preference for systems over people management. That's the exact profile that builds content channels, email lists, and SEO assets that generate income months and years after the work is done.",
     opportunity: "Affiliate marketers earn commissions promoting other companies' products — without customer service, inventory, or product creation. Top affiliates in competitive niches earn $10K–$100K+ per month from content they created years ago. A single high-ranking blog post or YouTube video can generate five figures annually on autopilot. The business model scales infinitely and requires nothing more than a laptop and consistent output. Once your content machine is built, it runs whether you're working or not.",
-    standardUrl: "https://whop.com/ascend-career-guidance/affiliate-marketing-standard",
-    premiumUrl: "https://whop.com/ascend-career-guidance/affiliate-marketing-premium",
-    standardPrice: "$XX",
-    premiumPrice: "$XX",
-    standardDesc: "Niche selection, content strategy, and building your first affiliate income stream.",
-    premiumDesc: "Full traffic playbook, high-converting offer vault, SEO tools, and monthly strategy sessions.",
+    coreUrl: "https://whop.com/ascend-career-guidance/affiliate-marketing-standard",
+    proUrl: "https://whop.com/ascend-career-guidance/affiliate-marketing-premium",
+    corePrice: "$34.99",
+    proPrice: "$47.99",
+    coreDesc: "Niche selection, content strategy, and building your first affiliate income stream.",
+    proDesc: "Full traffic playbook, high-converting offer vault, SEO tools, and monthly strategy sessions.",
   },
   social: {
     name: "Social Media Marketing",
@@ -247,12 +247,12 @@ const careers = {
     tagline: "Turn attention into income. On your terms.",
     whyYou: "You have an intuitive feel for what people respond to online — and that's rarer than most people realize. Your answers show someone who is naturally plugged in, trend-aware, and capable of creating content or managing platforms with real strategic intent. Social media marketing is one of the fastest paths from zero to income for someone with your profile because you're already doing half the work instinctively. The roadmap teaches you how to monetize what comes naturally.",
     opportunity: "Brands spend over $200 billion per year on social media marketing — and most of them desperately need people who actually understand how the platforms work. A solo social media manager with five clients can charge $1,500–$5,000 per client per month, generating $7,500–$25,000 monthly from home. Content creators with audiences of 50K–100K routinely earn $5K–$20K per month through brand deals, products, and affiliate partnerships. The barrier to entry is your phone and your creative instinct — both of which you already have.",
-    standardUrl: "https://whop.com/ascend-career-guidance/social-media-marketing-standard",
-    premiumUrl: "https://whop.com/ascend-career-guidance/social-media-marketing-premium",
-    standardPrice: "$XX",
-    premiumPrice: "$XX",
-    standardDesc: "Platform selection, content system, and landing your first paying client or brand deal.",
-    premiumDesc: "Agency-level strategy, client acquisition scripts, content calendar system, and live coaching.",
+    coreUrl: "https://whop.com/ascend-career-guidance/social-media-marketing-standard",
+    proUrl: "https://whop.com/ascend-career-guidance/social-media-marketing-premium",
+    corePrice: "$34.99",
+    proPrice: "$47.99",
+    coreDesc: "Platform selection, content system, and landing your first paying client or brand deal.",
+    proDesc: "Agency-level strategy, client acquisition scripts, content calendar system, and live coaching.",
   },
   freelancing: {
     name: "Creative Freelancing",
@@ -261,14 +261,24 @@ const careers = {
     tagline: "Get paid for what you're already good at.",
     whyYou: "Your answers reveal someone with a strong creative identity and the discipline to develop a skill to a level where people will pay serious money for it. Creative freelancing — whether that's design, copywriting, video editing, web development, or photography — rewards depth of craft and the ability to deliver results for clients. You scored high on preference for independent work, skill-based income, and building something that reflects your personal brand. The best freelancers don't just do work — they become the go-to person in a specific niche.",
     opportunity: "Skilled freelancers are among the highest-paid independent workers in the world. A copywriter charging $5,000 per project and closing four clients per month earns $20K. A video editor retaining three agency clients at $3,000/month earns $9K working 20 hours a week. A web developer with a focused niche can charge $8,000–$25,000 per project. The ceiling is determined entirely by your skill level and positioning — and unlike a salary, there's no one to ask for a raise. You just raise your rates.",
-    standardUrl: "https://whop.com/ascend-career-guidance/creative-freelancing-standard",
-    premiumUrl: "https://whop.com/ascend-career-guidance/creative-freelancing-premium",
-    standardPrice: "$XX",
-    premiumPrice: "$XX",
-    standardDesc: "Skill positioning, portfolio building, and landing your first $1K+ freelance client.",
-    premiumDesc: "Rate scaling system, proposal templates, client retention playbook, and weekly office hours.",
+    coreUrl: "https://whop.com/ascend-career-guidance/creative-freelancing-standard",
+    proUrl: "https://whop.com/ascend-career-guidance/creative-freelancing-premium",
+    corePrice: "$34.99",
+    proPrice: "$47.99",
+    coreDesc: "Skill positioning, portfolio building, and landing your first $1K+ freelance client.",
+    proDesc: "Rate scaling system, proposal templates, client retention playbook, and weekly office hours.",
   },
 };
+
+
+// ── LOGO ──────────────────────────────────────────────────────────────────────
+function Logo({ style={} }) {
+  return (
+    <div style={{ display: "flex", justifyContent: "center", marginBottom: 32, ...style }}>
+      <img src="/logo.png" alt="Ascend Modern Career Guidance" style={{ height: 44, width: "auto", objectFit: "contain" }} />
+    </div>
+  );
+}
 
 // ── SCORE ENGINE ─────────────────────────────────────────────────────────────
 function computeScores(answers) {
@@ -336,6 +346,7 @@ function Hero({ onStart }) {
       </div>
 
       <div style={{ position: "relative", maxWidth: 700, width: "100%", textAlign: "center", opacity: in_ ? 1 : 0, transform: in_ ? "translateY(0)" : "translateY(28px)", transition: "opacity 0.8s ease, transform 0.8s ease" }}>
+        <Logo />
         {/* eyebrow */}
         <div style={{ fontFamily: S.body, fontSize: 12, color: S.accent, letterSpacing: "0.14em", textTransform: "uppercase", fontWeight: 600, marginBottom: 22 }}>
           Stop Guessing Your Future
@@ -410,6 +421,7 @@ function Quiz({ onComplete }) {
       {/* scrollable content */}
       <div style={{ flex: 1, display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", paddingBottom: 100, paddingTop: 48 }}>
         <div style={{ position: "relative", width: "100%", maxWidth: 700 }}>
+          <Logo style={{ marginBottom: 8 }} />
           {/* progress */}
           <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 10 }}>
             <div style={{ fontFamily: S.body, fontSize: 12, color: S.dim, letterSpacing: "0.08em", textTransform: "uppercase" }}>Question {current + 1} of {questions.length}</div>
@@ -523,6 +535,7 @@ function EmailGate({ scores, onSubmit }) {
       <div style={{ position: "absolute", top: "30%", left: "50%", transform: "translateX(-50%)", width: 600, height: 400, borderRadius: "50%", background: "radial-gradient(circle, rgba(59,130,246,0.07) 0%, transparent 70%)", filter: "blur(60px)", pointerEvents: "none" }} />
       <div style={{ position: "relative", maxWidth: 480, width: "100%", opacity: mounted ? 1 : 0, transform: mounted ? "translateY(0)" : "translateY(24px)", transition: "opacity 0.6s ease, transform 0.6s ease" }}>
         <div style={{ textAlign: "center", marginBottom: 32 }}>
+          <Logo />
           <div style={{ display: "inline-flex", alignItems: "center", justifyContent: "center", width: 52, height: 52, borderRadius: 14, background: "rgba(59,130,246,0.12)", border: "1px solid rgba(59,130,246,0.25)", fontSize: 22, marginBottom: 22 }}>🔍</div>
           <h2 style={{ fontFamily: S.display, fontSize: "clamp(26px, 5vw, 36px)", fontWeight: 800, color: S.text, lineHeight: 1.1, marginBottom: 12, letterSpacing: "-0.02em" }}>
             Your results are ready.
@@ -583,6 +596,7 @@ function Results({ scores }) {
       </div>
 
       <div style={{ position: "relative", maxWidth: 700, margin: "0 auto" }}>
+        <Logo />
 
         {/* ── TOP RESULT CARD ── */}
         <div style={{ ...fade(1), ...card({ border: `1px solid ${career.color}35`, boxShadow: `0 0 56px ${career.color}14, 0 20px 56px rgba(0,0,0,0.4)`, marginBottom: 14, position: "relative", overflow: "hidden" }) }}>
@@ -598,25 +612,25 @@ function Results({ scores }) {
 
           {/* ── CTA IMMEDIATELY AFTER RESULT ── */}
           <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 10 }}>
-            {/* Standard */}
-            <a href={career.standardUrl} target="_blank" rel="noopener noreferrer"
+            {/* Core */}
+            <a href={career.coreUrl} target="_blank" rel="noopener noreferrer"
               style={{ display: "block", background: "rgba(255,255,255,0.05)", border: `1px solid ${S.border}`, borderRadius: 12, padding: "16px 18px", textDecoration: "none", transition: "all 0.16s" }}
               onMouseEnter={e => { e.currentTarget.style.background = "rgba(255,255,255,0.09)"; e.currentTarget.style.borderColor = "rgba(255,255,255,0.15)"; }}
               onMouseLeave={e => { e.currentTarget.style.background = "rgba(255,255,255,0.05)"; e.currentTarget.style.borderColor = S.border; }}>
-              <div style={{ fontFamily: S.body, fontSize: 11, color: S.dim, letterSpacing: "0.1em", textTransform: "uppercase", marginBottom: 4 }}>Standard</div>
-              <div style={{ fontFamily: S.display, fontSize: 22, fontWeight: 800, color: S.text, marginBottom: 4 }}>{career.standardPrice}</div>
-              <div style={{ fontFamily: S.body, fontSize: 13, color: S.muted, lineHeight: 1.45, marginBottom: 12 }}>{career.standardDesc}</div>
+              <div style={{ fontFamily: S.body, fontSize: 11, color: S.dim, letterSpacing: "0.1em", textTransform: "uppercase", marginBottom: 4 }}>Core</div>
+              <div style={{ fontFamily: S.display, fontSize: 22, fontWeight: 800, color: S.text, marginBottom: 4 }}>{career.corePrice}</div>
+              <div style={{ fontFamily: S.body, fontSize: 13, color: S.muted, lineHeight: 1.45, marginBottom: 12 }}>{career.coreDesc}</div>
               <div style={{ fontFamily: S.body, fontSize: 13, fontWeight: 600, color: S.accent }}>Get Access →</div>
             </a>
-            {/* Premium */}
-            <a href={career.premiumUrl} target="_blank" rel="noopener noreferrer"
+            {/* Pro */}
+            <a href={career.proUrl} target="_blank" rel="noopener noreferrer"
               style={{ display: "block", background: `${career.color}12`, border: `1px solid ${career.color}35`, borderRadius: 12, padding: "16px 18px", textDecoration: "none", position: "relative", overflow: "hidden", transition: "all 0.16s" }}
               onMouseEnter={e => { e.currentTarget.style.background = `${career.color}20`; }}
               onMouseLeave={e => { e.currentTarget.style.background = `${career.color}12`; }}>
               <div style={{ position: "absolute", top: 10, right: 12, fontFamily: S.body, fontSize: 10, color: career.color, letterSpacing: "0.08em", textTransform: "uppercase", fontWeight: 700, background: `${career.color}20`, borderRadius: 100, padding: "2px 8px" }}>Best Value</div>
-              <div style={{ fontFamily: S.body, fontSize: 11, color: S.dim, letterSpacing: "0.1em", textTransform: "uppercase", marginBottom: 4 }}>Premium</div>
-              <div style={{ fontFamily: S.display, fontSize: 22, fontWeight: 800, color: S.text, marginBottom: 4 }}>{career.premiumPrice}</div>
-              <div style={{ fontFamily: S.body, fontSize: 13, color: S.muted, lineHeight: 1.45, marginBottom: 12 }}>{career.premiumDesc}</div>
+              <div style={{ fontFamily: S.body, fontSize: 11, color: S.dim, letterSpacing: "0.1em", textTransform: "uppercase", marginBottom: 4 }}>Pro</div>
+              <div style={{ fontFamily: S.display, fontSize: 22, fontWeight: 800, color: S.text, marginBottom: 4 }}>{career.proPrice}</div>
+              <div style={{ fontFamily: S.body, fontSize: 13, color: S.muted, lineHeight: 1.45, marginBottom: 12 }}>{career.proDesc}</div>
               <div style={{ fontFamily: S.body, fontSize: 13, fontWeight: 700, color: career.color }}>Get Access →</div>
             </a>
           </div>
@@ -660,6 +674,13 @@ function Results({ scores }) {
               </div>
             ))}
           </div>
+        </div>
+
+        {/* ── DISCLAIMER ── */}
+        <div style={{ ...fade(3, 0.15), background: "rgba(255,255,255,0.02)", border: `1px solid ${S.border}`, borderRadius: 12, padding: "18px 22px", marginBottom: 14 }}>
+          <p style={{ fontFamily: S.body, fontSize: 12, color: S.dim, lineHeight: 1.65, margin: 0, textAlign: "center" }}>
+            <strong style={{ color: "#475569" }}>Disclaimer:</strong> Ascend provides educational and informational content only. This is not a licensing course and does not constitute legal, financial, or professional advice. The roadmap is designed to help users become entry-ready, not to guarantee outcomes. Individual results vary and users are responsible for their own career decisions.
+          </p>
         </div>
 
         {/* ── RETAKE ── */}
