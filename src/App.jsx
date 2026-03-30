@@ -167,8 +167,8 @@ const careers = {
     proUrl: "https://whop.com/ascend-career-guidance/day-trading-stocks-premium",
     corePrice: "$34.99",
     proPrice: "$47.99",
-    coreDesc: "The core roadmap — everything you need to start building your trading edge from day one.",
-    proDesc: "Full system access, live sessions, community, and direct support to accelerate your path to profitability.",
+    coreDesc: "90-Day Roadmap for Day Trading Stocks. Includes course access, PowerPoint presentation, and audio walkthrough.",
+    proDesc: "Premium 90-Day Roadmap for Day Trading Stocks. Everything in Core plus bonus resources, templates, and tools.",
   },
   realestate: {
     name: "Real Estate",
@@ -181,8 +181,8 @@ const careers = {
     proUrl: "https://whop.com/ascend-career-guidance/real-estate-premium",
     corePrice: "$34.99",
     proPrice: "$47.99",
-    coreDesc: "The complete Real Estate roadmap — from zero to your first deal, step by step.",
-    proDesc: "Premium access with deal analysis tools, mentorship calls, and an active investor community.",
+    coreDesc: "90-Day Roadmap for Real Estate. Includes course access, PowerPoint presentation, and audio walkthrough.",
+    proDesc: "Premium 90-Day Roadmap for Real Estate. Everything in Core plus bonus resources, templates, and tools.",
   },
   homeservices: {
     name: "Home Services",
@@ -195,8 +195,8 @@ const careers = {
     proUrl: "https://whop.com/ascend-career-guidance/home-services-premium",
     corePrice: "$34.99",
     proPrice: "$47.99",
-    coreDesc: "Launch your home services business the right way — service selection, pricing, and first clients.",
-    proDesc: "Done-with-you system including scripts, marketing templates, and weekly group coaching.",
+    coreDesc: "90-Day Roadmap for Home Services. Includes course access, PowerPoint presentation, and audio walkthrough.",
+    proDesc: "Premium 90-Day Roadmap for Home Services. Everything in Core plus bonus resources, templates, and tools.",
   },
   shopify: {
     name: "Shopify Dropshipping",
@@ -209,8 +209,8 @@ const careers = {
     proUrl: "https://whop.com/ascend-career-guidance/shopify-dropshipping-premium",
     corePrice: "$34.99",
     proPrice: "$47.99",
-    coreDesc: "Product research, store setup, and your first profitable ad — the complete beginner roadmap.",
-    proDesc: "Advanced scaling strategies, winning product vault, ad creatives, and 1-on-1 store reviews.",
+    coreDesc: "90-Day Roadmap for Shopify Dropshipping. Includes course access, PowerPoint presentation, and audio walkthrough.",
+    proDesc: "Premium 90-Day Roadmap for Shopify Dropshipping. Everything in Core plus bonus resources, templates, and tools.",
   },
   sales: {
     name: "High Ticket Sales",
@@ -223,8 +223,8 @@ const careers = {
     proUrl: "https://whop.com/ascend-career-guidance/high-ticket-sales-premium-c7",
     corePrice: "$34.99",
     proPrice: "$47.99",
-    coreDesc: "Sales psychology, call frameworks, and how to land your first remote closer role.",
-    proDesc: "Role placement support, live call reviews, objection training vault, and closer community.",
+    coreDesc: "90-Day Roadmap for High Ticket Sales. Includes course access, PowerPoint presentation, and audio walkthrough.",
+    proDesc: "Premium 90-Day Roadmap for High Ticket Sales. Everything in Core plus bonus resources, templates, and tools.",
   },
   affiliate: {
     name: "Affiliate Marketing",
@@ -237,8 +237,8 @@ const careers = {
     proUrl: "https://whop.com/ascend-career-guidance/affiliate-marketing-premium",
     corePrice: "$34.99",
     proPrice: "$47.99",
-    coreDesc: "Niche selection, content strategy, and building your first affiliate income stream.",
-    proDesc: "Full traffic playbook, high-converting offer vault, SEO tools, and monthly strategy sessions.",
+    coreDesc: "90-Day Roadmap for Affiliate Marketing. Includes course access, PowerPoint presentation, and audio walkthrough.",
+    proDesc: "Premium 90-Day Roadmap for Affiliate Marketing. Everything in Core plus bonus resources, templates, and tools.",
   },
   social: {
     name: "Social Media Marketing",
@@ -251,8 +251,8 @@ const careers = {
     proUrl: "https://whop.com/ascend-career-guidance/social-media-marketing-premium",
     corePrice: "$34.99",
     proPrice: "$47.99",
-    coreDesc: "Platform selection, content system, and landing your first paying client or brand deal.",
-    proDesc: "Agency-level strategy, client acquisition scripts, content calendar system, and live coaching.",
+    coreDesc: "90-Day Roadmap for Social Media Marketing. Includes course access, PowerPoint presentation, and audio walkthrough.",
+    proDesc: "Premium 90-Day Roadmap for Social Media Marketing. Everything in Core plus bonus resources, templates, and tools.",
   },
   freelancing: {
     name: "Creative Freelancing",
@@ -265,8 +265,8 @@ const careers = {
     proUrl: "https://whop.com/ascend-career-guidance/creative-freelancing-premium",
     corePrice: "$34.99",
     proPrice: "$47.99",
-    coreDesc: "Skill positioning, portfolio building, and landing your first $1K+ freelance client.",
-    proDesc: "Rate scaling system, proposal templates, client retention playbook, and weekly office hours.",
+    coreDesc: "90-Day Roadmap for Creative Freelancing. Includes course access, PowerPoint presentation, and audio walkthrough.",
+    proDesc: "Premium 90-Day Roadmap for Creative Freelancing. Everything in Core plus bonus resources, templates, and tools.",
   },
 };
 
@@ -353,7 +353,7 @@ function Hero({ onStart }) {
         </div>
 
         {/* headline */}
-        <h1 style={{ fontFamily: S.display, fontSize: "clamp(52px, 9vw, 96px)", fontWeight: 800, lineHeight: 0.95, color: S.text, margin: "0 0 32px", letterSpacing: "-0.02em" }}>
+        <h1 style={{ fontFamily: S.display, fontSize: "clamp(52px, 9vw, 96px)", fontWeight: 800, lineHeight: 0.95, color: S.text, margin: "0 0 32px", letterSpacing: "-0.02em" , textTransform: "uppercase" }}>
           Start Your<br />
           <span style={{ color: S.accent }}>Ascent</span>
         </h1>
@@ -425,7 +425,7 @@ function Quiz({ onComplete }) {
           {/* progress */}
           <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 10 }}>
             <div style={{ fontFamily: S.body, fontSize: 12, color: S.dim, letterSpacing: "0.08em", textTransform: "uppercase" }}>Question {current + 1} of {questions.length}</div>
-            <div style={{ fontFamily: S.display, fontSize: 20, fontWeight: 800, color: S.accent }}>{Math.round(progress)}%</div>
+            <div style={{ fontFamily: S.display, fontSize: 20, fontWeight: 800, color: S.accent , textTransform: "uppercase" }}>{Math.round(progress)}%</div>
           </div>
           <div style={{ height: 2, background: S.border, borderRadius: 2, marginBottom: 44, overflow: "hidden" }}>
             <div style={{ height: "100%", width: `${progress}%`, background: "linear-gradient(90deg, #3b82f6, #8b5cf6)", transition: "width 0.5s ease", boxShadow: "0 0 8px rgba(59,130,246,0.7)" }} />
@@ -433,7 +433,7 @@ function Quiz({ onComplete }) {
 
           {/* question */}
           <div style={{ opacity: visible ? 1 : 0, transform: visible ? "translateY(0)" : `translateY(${dir === "forward" ? "-12px" : "12px"})`, transition: "opacity 0.24s ease, transform 0.24s ease" }}>
-            <h2 style={{ fontFamily: S.display, fontSize: "clamp(22px, 3.8vw, 32px)", fontWeight: 800, color: S.text, lineHeight: 1.2, marginBottom: 32, letterSpacing: "-0.01em" }}>
+            <h2 style={{ fontFamily: S.display, fontSize: "clamp(22px, 3.8vw, 32px)", fontWeight: 800, color: S.text, lineHeight: 1.2, marginBottom: 32, letterSpacing: "-0.01em" , textTransform: "uppercase" }}>
               {q.text}
             </h2>
 
@@ -445,7 +445,7 @@ function Quiz({ onComplete }) {
                     style={{ background: isSel ? "rgba(59,130,246,0.13)" : "rgba(11,18,32,0.7)", border: isSel ? "1px solid rgba(59,130,246,0.55)" : `1px solid ${S.border}`, borderRadius: 12, padding: "17px 20px", cursor: "pointer", display: "flex", alignItems: "flex-start", gap: 14, textAlign: "left", transition: "all 0.16s ease", transform: isSel ? "translateX(4px)" : "translateX(0)", boxShadow: isSel ? "0 0 0 1px rgba(59,130,246,0.25), 0 4px 20px rgba(59,130,246,0.1)" : "none" }}
                     onMouseEnter={e => { if (!isSel) { e.currentTarget.style.background = "rgba(255,255,255,0.04)"; e.currentTarget.style.borderColor = "rgba(255,255,255,0.14)"; } }}
                     onMouseLeave={e => { if (!isSel) { e.currentTarget.style.background = "rgba(11,18,32,0.7)"; e.currentTarget.style.borderColor = S.border; } }}>
-                    <div style={{ minWidth: 26, height: 26, borderRadius: 7, background: isSel ? S.accent : "rgba(255,255,255,0.07)", display: "flex", alignItems: "center", justifyContent: "center", fontFamily: S.display, fontSize: 11, fontWeight: 800, color: isSel ? "#fff" : S.dim, flexShrink: 0, marginTop: 1, transition: "all 0.16s" }}>
+                    <div style={{ minWidth: 26, height: 26, borderRadius: 7, background: isSel ? S.accent : "rgba(255,255,255,0.07)", display: "flex", alignItems: "center", justifyContent: "center", fontFamily: S.display, fontSize: 11, fontWeight: 800, color: isSel ? "#fff" : S.dim, flexShrink: 0, marginTop: 1, transition: "all 0.16s" , textTransform: "uppercase" }}>
                       {letters[i]}
                     </div>
                     <span style={{ fontFamily: S.body, fontSize: 15, lineHeight: 1.55, color: isSel ? S.text : S.muted, transition: "color 0.16s" }}>
@@ -537,7 +537,7 @@ function EmailGate({ scores, onSubmit }) {
         <div style={{ textAlign: "center", marginBottom: 32 }}>
           <Logo />
           <div style={{ display: "inline-flex", alignItems: "center", justifyContent: "center", width: 52, height: 52, borderRadius: 14, background: "rgba(59,130,246,0.12)", border: "1px solid rgba(59,130,246,0.25)", fontSize: 22, marginBottom: 22 }}>🔍</div>
-          <h2 style={{ fontFamily: S.display, fontSize: "clamp(26px, 5vw, 36px)", fontWeight: 800, color: S.text, lineHeight: 1.1, marginBottom: 12, letterSpacing: "-0.02em" }}>
+          <h2 style={{ fontFamily: S.display, fontSize: "clamp(26px, 5vw, 36px)", fontWeight: 800, color: S.text, lineHeight: 1.1, marginBottom: 12, letterSpacing: "-0.02em" , textTransform: "uppercase" }}>
             Your results are ready.
           </h2>
           <p style={{ fontFamily: S.body, fontSize: 15, color: S.dim, lineHeight: 1.6 }}>
@@ -605,7 +605,7 @@ function Results({ scores }) {
             <div style={{ fontSize: 44, lineHeight: 1, flexShrink: 0 }}>{careerEmojis[topKey]}</div>
             <div style={{ flex: 1, minWidth: 180 }}>
               <div style={{ fontFamily: S.body, fontSize: 11, color: career.color, letterSpacing: "0.14em", textTransform: "uppercase", fontWeight: 600, marginBottom: 6 }}>Your #1 Match</div>
-              <h1 style={{ fontFamily: S.display, fontSize: "clamp(30px, 5.5vw, 50px)", fontWeight: 800, color: S.text, margin: "0 0 6px", lineHeight: 1.0, letterSpacing: "-0.02em" }}>{career.name}</h1>
+              <h1 style={{ fontFamily: S.display, fontSize: "clamp(30px, 5.5vw, 50px)", fontWeight: 800, color: S.text, margin: "0 0 6px", lineHeight: 1.0, letterSpacing: "-0.02em" , textTransform: "uppercase" }}>{career.name}</h1>
               <p style={{ fontFamily: S.body, fontSize: 14, color: S.muted, margin: 0 }}>{career.tagline}</p>
             </div>
           </div>
@@ -618,7 +618,7 @@ function Results({ scores }) {
               onMouseEnter={e => { e.currentTarget.style.background = "rgba(255,255,255,0.09)"; e.currentTarget.style.borderColor = "rgba(255,255,255,0.15)"; }}
               onMouseLeave={e => { e.currentTarget.style.background = "rgba(255,255,255,0.05)"; e.currentTarget.style.borderColor = S.border; }}>
               <div style={{ fontFamily: S.body, fontSize: 11, color: S.dim, letterSpacing: "0.1em", textTransform: "uppercase", marginBottom: 4 }}>Core</div>
-              <div style={{ fontFamily: S.display, fontSize: 22, fontWeight: 800, color: S.text, marginBottom: 4 }}>{career.corePrice}</div>
+              <div style={{ fontFamily: S.display, fontSize: 22, fontWeight: 800, color: S.text, marginBottom: 4 , textTransform: "uppercase" }}>{career.corePrice}</div>
               <div style={{ fontFamily: S.body, fontSize: 13, color: S.muted, lineHeight: 1.45, marginBottom: 12 }}>{career.coreDesc}</div>
               <div style={{ fontFamily: S.body, fontSize: 13, fontWeight: 600, color: S.accent }}>Get Access →</div>
             </a>
@@ -629,7 +629,7 @@ function Results({ scores }) {
               onMouseLeave={e => { e.currentTarget.style.background = `${career.color}12`; }}>
               <div style={{ position: "absolute", top: 10, right: 12, fontFamily: S.body, fontSize: 10, color: career.color, letterSpacing: "0.08em", textTransform: "uppercase", fontWeight: 700, background: `${career.color}20`, borderRadius: 100, padding: "2px 8px" }}>Best Value</div>
               <div style={{ fontFamily: S.body, fontSize: 11, color: S.dim, letterSpacing: "0.1em", textTransform: "uppercase", marginBottom: 4 }}>Pro</div>
-              <div style={{ fontFamily: S.display, fontSize: 22, fontWeight: 800, color: S.text, marginBottom: 4 }}>{career.proPrice}</div>
+              <div style={{ fontFamily: S.display, fontSize: 22, fontWeight: 800, color: S.text, marginBottom: 4 , textTransform: "uppercase" }}>{career.proPrice}</div>
               <div style={{ fontFamily: S.body, fontSize: 13, color: S.muted, lineHeight: 1.45, marginBottom: 12 }}>{career.proDesc}</div>
               <div style={{ fontFamily: S.body, fontSize: 13, fontWeight: 700, color: career.color }}>Get Access →</div>
             </a>
@@ -653,10 +653,10 @@ function Results({ scores }) {
           <div style={{ fontSize: 30 }}>{careerEmojis[runnerKey]}</div>
           <div style={{ flex: 1 }}>
             <div style={{ fontFamily: S.body, fontSize: 11, color: S.dim, letterSpacing: "0.11em", textTransform: "uppercase", marginBottom: 3 }}>Runner-Up</div>
-            <div style={{ fontFamily: S.display, fontSize: 20, fontWeight: 800, color: barColors[runnerKey], letterSpacing: "-0.01em" }}>{runner.name}</div>
+            <div style={{ fontFamily: S.display, fontSize: 20, fontWeight: 800, color: barColors[runnerKey], letterSpacing: "-0.01em" , textTransform: "uppercase" }}>{runner.name}</div>
             <div style={{ fontFamily: S.body, fontSize: 12, color: S.dim, marginTop: 2 }}>{runner.tagline}</div>
           </div>
-          <div style={{ fontFamily: S.display, fontSize: 28, fontWeight: 800, color: barColors[runnerKey], flexShrink: 0 }}>{runnerScore}</div>
+          <div style={{ fontFamily: S.display, fontSize: 28, fontWeight: 800, color: barColors[runnerKey], flexShrink: 0 , textTransform: "uppercase" }}>{runnerScore}</div>
         </div>
 
         {/* ── SCORE BREAKDOWN — sorted descending ── */}
@@ -670,7 +670,7 @@ function Results({ scores }) {
                 <div style={{ flex: 1, height: 5, background: "rgba(255,255,255,0.05)", borderRadius: 3, overflow: "hidden" }}>
                   <div style={{ height: "100%", width: step >= 3 ? `${(val/maxScore)*100}%` : "0%", background: barColors[key], borderRadius: 3, transition: "width 1s cubic-bezier(0.4,0,0.2,1) 0.15s", boxShadow: key === topKey ? `0 0 8px ${barColors[key]}80` : "none" }} />
                 </div>
-                <div style={{ fontFamily: S.display, fontSize: 17, fontWeight: 800, color: key === topKey ? barColors[key] : S.dim, width: 22, textAlign: "right", flexShrink: 0 }}>{val}</div>
+                <div style={{ fontFamily: S.display, fontSize: 17, fontWeight: 800, color: key === topKey ? barColors[key] : S.dim, width: 22, textAlign: "right", flexShrink: 0 , textTransform: "uppercase" }}>{val}</div>
               </div>
             ))}
           </div>
