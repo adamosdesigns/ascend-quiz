@@ -306,7 +306,7 @@ async function sendNotification(name, email, careerName) {
 }
 
 // ── DESIGN TOKENS ─────────────────────────────────────────────────────────────
-const FONTS = `@import url('https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&display=swap');`;
+const FONTS = `@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@600;700@import url('https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&display=swap');family=Source+Sans+3:wght@400;500;600@import url('https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&display=swap');display=swap');`;
 
 const S = {
   bg: "#020617",
@@ -317,8 +317,8 @@ const S = {
   dim: "#475569",
   accent: "#3b82f6",
   // display font = Syne (bold geometric sans), body = DM Sans
-  display: "'Syne', sans-serif",
-  body: "'DM Sans', sans-serif",
+  display: "'Oswald', sans-serif",
+  body: "'Source Sans 3', sans-serif",
 };
 
 // ── HERO ──────────────────────────────────────────────────────────────────────
