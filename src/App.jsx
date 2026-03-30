@@ -615,30 +615,32 @@ function Results({ scores }) {
           <div className="cta-grid" style={{ display: "flex", flexDirection: "column", gap: 12 }}>
 
             {/* Core card */}
-            <div style={{ background: "rgba(255,255,255,0.03)", border: `1px solid ${S.border}`, borderRadius: 14, padding: "22px 22px 18px", position: "relative" }}>
+            <div style={{ background: "rgba(255,255,255,0.03)", border: `1px solid ${S.border}`, borderRadius: 14, padding: "22px 22px 18px", position: "relative", display: "flex", flexDirection: "column" }}>
               <div style={{ fontFamily: S.body, fontSize: 11, color: S.muted, letterSpacing: "0.12em", textTransform: "uppercase", marginBottom: 6 }}>Get Moving</div>
               <div style={{ marginBottom: 4 }}>
                 <span style={{ fontFamily: S.display, fontSize: 26, fontWeight: 800, color: S.text, textTransform: "uppercase" }}>Ascend </span>
                 <span style={{ fontFamily: S.display, fontSize: 26, fontWeight: 800, color: career.color, textTransform: "uppercase" }}>Core</span>
               </div>
-              <div style={{ fontFamily: S.body, fontSize: 13, color: S.muted, marginBottom: 16, lineHeight: 1.5 }}>Your 90-day roadmap and 30-minute audio industry deep dive — what you need to stop guessing and start moving.</div>
+              <div style={{ fontFamily: S.body, fontSize: 13, color: S.muted, marginBottom: 16, lineHeight: 1.5 }}>Time to stop guessing and start moving.</div>
               <div style={{ borderTop: `1px solid ${S.border}`, marginBottom: 16 }} />
-              <div style={{ fontFamily: S.display, fontSize: 30, fontWeight: 800, color: S.text, textTransform: "uppercase", marginBottom: 18 }}>{career.corePrice}</div>
-              {[
-                [true,  "90-Day Roadmap",         "Your exact plan from day one to first win"],
-                [true,  "Audio Industry Deep Dive","How the industry actually works, in plain English"],
-                [false, "Quick Start Plan",        "Your first moves, decided. No overthinking"],
-                [false, "Visual Execution Map",    "The full picture, so you always know what's next"],
-                [false, "Industry Language Guide", "Sound like you've been in it for years"],
-              ].map(([inc, title, sub]) => (
-                <div key={title} style={{ display: "flex", gap: 12, marginBottom: 12, opacity: inc ? 1 : 0.35 }}>
-                  <div style={{ fontSize: 13, color: inc ? career.color : S.dim, flexShrink: 0, marginTop: 1, fontWeight: 700 }}>{inc ? "✓" : "✗"}</div>
-                  <div>
-                    <div style={{ fontFamily: S.body, fontSize: 14, fontWeight: 600, color: inc ? S.text : S.dim, lineHeight: 1.3 }}>{title}</div>
-                    <div style={{ fontFamily: S.body, fontSize: 12, color: S.dim, lineHeight: 1.4, marginTop: 2 }}>{sub}</div>
+              <div style={{ flex: 1 }}>
+                <div style={{ fontFamily: S.display, fontSize: 30, fontWeight: 800, color: S.text, textTransform: "uppercase", marginBottom: 18 }}>{career.corePrice}</div>
+                {[
+                  [true,  "90-Day Roadmap",         "Your exact plan from day one to first win"],
+                  [true,  "Audio Industry Deep Dive","How the industry actually works, in plain English"],
+                  [false, "Quick Start Plan",        "Your first moves, decided. No overthinking"],
+                  [false, "Visual Execution Map",    "The full picture, so you always know what's next"],
+                  [false, "Industry Language Guide", "Sound like you've been in it for years"],
+                ].map(([inc, title, sub]) => (
+                  <div key={title} style={{ display: "flex", gap: 12, marginBottom: 12, opacity: inc ? 1 : 0.35 }}>
+                    <div style={{ fontSize: 13, color: inc ? career.color : S.dim, flexShrink: 0, marginTop: 1, fontWeight: 700 }}>{inc ? "✓" : "✗"}</div>
+                    <div>
+                      <div style={{ fontFamily: S.body, fontSize: 14, fontWeight: 600, color: inc ? S.text : S.dim, lineHeight: 1.3 }}>{title}</div>
+                      <div style={{ fontFamily: S.body, fontSize: 12, color: S.dim, lineHeight: 1.4, marginTop: 2 }}>{sub}</div>
+                    </div>
                   </div>
-                </div>
-              ))}
+                ))}
+              </div>
               <a href={career.coreUrl} target="_blank" rel="noopener noreferrer"
                 style={{ display: "block", marginTop: 18, background: "rgba(255,255,255,0.07)", border: `1px solid ${S.border}`, borderRadius: 9, padding: "13px", textAlign: "center", fontFamily: S.display, fontSize: 14, fontWeight: 700, color: S.text, textDecoration: "none", letterSpacing: "0.08em", textTransform: "uppercase", transition: "all 0.15s" }}
                 onMouseEnter={e => { e.currentTarget.style.background = "rgba(255,255,255,0.12)"; }}
@@ -648,31 +650,33 @@ function Results({ scores }) {
             </div>
 
             {/* Pro card */}
-            <div style={{ background: `${career.color}10`, border: `2px solid ${career.color}60`, borderRadius: 14, padding: "22px 22px 18px", position: "relative", boxShadow: `0 0 32px ${career.color}12` }}>
+            <div style={{ background: `${career.color}10`, border: `2px solid ${career.color}60`, borderRadius: 14, padding: "22px 22px 18px", position: "relative", boxShadow: `0 0 32px ${career.color}12`, display: "flex", flexDirection: "column" }}>
               <div style={{ position: "absolute", top: -1, right: 16, background: career.color, borderRadius: "0 0 8px 8px", padding: "4px 12px", fontFamily: S.display, fontSize: 11, fontWeight: 700, color: "#fff", letterSpacing: "0.1em", textTransform: "uppercase" }}>Most Popular</div>
               <div style={{ fontFamily: S.body, fontSize: 11, color: career.color, letterSpacing: "0.12em", textTransform: "uppercase", marginBottom: 6 }}>Get There Faster</div>
               <div style={{ marginBottom: 4 }}>
                 <span style={{ fontFamily: S.display, fontSize: 26, fontWeight: 800, color: S.text, textTransform: "uppercase" }}>Ascend </span>
                 <span style={{ fontFamily: S.display, fontSize: 26, fontWeight: 800, color: career.color, textTransform: "uppercase" }}>Pro</span>
               </div>
-              <div style={{ fontFamily: S.body, fontSize: 13, color: S.muted, marginBottom: 16, lineHeight: 1.5 }}>The full toolkit built to boost your speed and productivity. Your 90-day roadmap, audio deep dive, quick start plan, execution map, and language guide — nothing left out.</div>
+              <div style={{ fontFamily: S.body, fontSize: 13, color: S.muted, marginBottom: 16, lineHeight: 1.5 }}>Built to boost your speed and productivity.</div>
               <div style={{ borderTop: `1px solid ${career.color}30`, marginBottom: 16 }} />
-              <div style={{ fontFamily: S.display, fontSize: 30, fontWeight: 800, color: S.text, textTransform: "uppercase", marginBottom: 18 }}>{career.proPrice}</div>
-              {[
-                [true, "90-Day Roadmap",          "Your exact plan from day one to first win"],
-                [true, "Audio Industry Deep Dive", "How the industry actually works, in plain English"],
-                [true, "Quick Start Plan",         "Your first moves, decided. No overthinking"],
-                [true, "Visual Execution Map",     "The full picture, so you always know what's next"],
-                [true, "Industry Language Guide",  "Sound like you've been in it for years"],
-              ].map(([inc, title, sub]) => (
-                <div key={title} style={{ display: "flex", gap: 12, marginBottom: 12 }}>
-                  <div style={{ fontSize: 13, color: career.color, flexShrink: 0, marginTop: 1, fontWeight: 700 }}>✓</div>
-                  <div>
-                    <div style={{ fontFamily: S.body, fontSize: 14, fontWeight: 600, color: S.text, lineHeight: 1.3 }}>{title}</div>
-                    <div style={{ fontFamily: S.body, fontSize: 12, color: S.dim, lineHeight: 1.4, marginTop: 2 }}>{sub}</div>
+              <div style={{ flex: 1 }}>
+                <div style={{ fontFamily: S.display, fontSize: 30, fontWeight: 800, color: S.text, textTransform: "uppercase", marginBottom: 18 }}>{career.proPrice}</div>
+                {[
+                  [true, "90-Day Roadmap",          "Your exact plan from day one to first win"],
+                  [true, "Audio Industry Deep Dive", "How the industry actually works, in plain English"],
+                  [true, "Quick Start Plan",         "Your first moves, decided. No overthinking"],
+                  [true, "Visual Execution Map",     "The full picture, so you always know what's next"],
+                  [true, "Industry Language Guide",  "Sound like you've been in it for years"],
+                ].map(([inc, title, sub]) => (
+                  <div key={title} style={{ display: "flex", gap: 12, marginBottom: 12 }}>
+                    <div style={{ fontSize: 13, color: career.color, flexShrink: 0, marginTop: 1, fontWeight: 700 }}>✓</div>
+                    <div>
+                      <div style={{ fontFamily: S.body, fontSize: 14, fontWeight: 600, color: S.text, lineHeight: 1.3 }}>{title}</div>
+                      <div style={{ fontFamily: S.body, fontSize: 12, color: S.dim, lineHeight: 1.4, marginTop: 2 }}>{sub}</div>
+                    </div>
                   </div>
-                </div>
-              ))}
+                ))}
+              </div>
               <a href={career.proUrl} target="_blank" rel="noopener noreferrer"
                 style={{ display: "block", marginTop: 18, background: career.color, border: "none", borderRadius: 9, padding: "13px", textAlign: "center", fontFamily: S.display, fontSize: 14, fontWeight: 700, color: "#fff", textDecoration: "none", letterSpacing: "0.08em", textTransform: "uppercase", boxShadow: `0 4px 20px ${career.color}50`, transition: "all 0.15s" }}
                 onMouseEnter={e => { e.currentTarget.style.opacity = "0.9"; e.currentTarget.style.transform = "translateY(-1px)"; }}
@@ -686,7 +690,7 @@ function Results({ scores }) {
 
         {/* ── WHY THIS IS YOUR PATH ── */}
         <div style={{ ...fade(2, 0), ...card() }}>
-          <div style={{ fontFamily: S.body, fontSize: 11, color: career.color, letterSpacing: "0.14em", textTransform: "uppercase", fontWeight: 700, marginBottom: 14 }}>Why This Is Your Path</div>
+          <div style={{ fontFamily: S.body, fontSize: 11, color: career.color, letterSpacing: "0.14em", textTransform: "uppercase", fontWeight: 700, marginBottom: 14 }}>🧭 Why This Is Your Path</div>
           <p style={{ fontFamily: S.body, fontSize: 15, color: "#cbd5e1", lineHeight: 1.72, margin: 0 }}>{career.whyYou}</p>
         </div>
 
