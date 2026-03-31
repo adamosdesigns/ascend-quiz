@@ -968,7 +968,7 @@ export default function App() {
   .skip-link:focus { top: 16px; }
 `}</style>
       <main id="main-content">
-        {screen === "hero"    && <Hero onStart={() => setScreen("quiz") />}
+        {screen === "hero"    && <Hero onStart={() => setScreen("quiz")} />}
         {screen === "quiz"    && <Quiz onComplete={s => { setScores(s); setScreen("gate"); }} />}
         {screen === "gate"    && <EmailGate scores={scores} onSubmit={() => setScreen("loading")} />}
         {screen === "loading" && <Loading onDone={() => setScreen("results")} />}
