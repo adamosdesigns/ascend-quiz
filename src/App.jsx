@@ -736,7 +736,7 @@ function Results({ scores }) {
 
         {/* ── WHY THIS IS YOUR PATH ── */}
         <div style={{ ...fade(2, 0), ...card() }}>
-          <div style={{ fontFamily: S.body, fontSize: 11, color: career.color, letterSpacing: "0.14em", textTransform: "uppercase", fontWeight: 700, marginBottom: 14 }}>🧭 Why This Is Your Path</div>
+          <div style={{ fontFamily: S.body, fontSize: 11, color: career.color, letterSpacing: "0.14em", textTransform: "uppercase", fontWeight: 700, marginBottom: 14 }}>📊 Why This Is Your Path</div>
           <p style={{ fontFamily: S.body, fontSize: 15, color: "#cbd5e1", lineHeight: 1.72, margin: 0 }}>{career.whyYou}</p>
         </div>
 
@@ -756,7 +756,7 @@ function Results({ scores }) {
               <div style={{ fontFamily: S.display, fontSize: 20, fontWeight: 800, color: barColors[runnerKey], textTransform: "uppercase" }}>{runner.name}</div>
               <div style={{ fontFamily: S.body, fontSize: 12, color: S.dim, marginTop: 2 }}>{runner.tagline}</div>
             </div>
-            <div style={{ fontFamily: S.display, fontSize: 28, fontWeight: 800, color: barColors[runnerKey], flexShrink: 0, textTransform: "uppercase" }}>{runnerScore}</div>
+  
           </div>
           {/* Condensed Core + Pro links for runner-up */}
           <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 10 }}>
@@ -825,65 +825,108 @@ function Results({ scores }) {
 
 // ── ADA ACCESSIBILITY TOOLBAR ─────────────────────────────────────────────────
 function ADAToolbar({ darkMode, onToggleDark }) {
-  const [open, setOpen] = useState(false);
-  const [hc, setHc] = useState(false);
-  const [large, setLarge] = useState(false);
-  const [motion, setMotion] = useState(false);
-  const S = getTheme(darkMode);
+  const [open, setOpen]               = useState(false);
+  const [biggerText, setBiggerText]   = useState(false);
+  const [highContrast, setHighContrast] = useState(false);
+  const [highlightLinks, setHighlightLinks] = useState(false);
+  const [dyslexiaFont, setDyslexiaFont] = useState(false);
+  const [textSpacing, setTextSpacing] = useState(false);
+  const [grayscale, setGrayscale]     = useState(false);
 
-  function toggleHC() {
-    const next = !hc; setHc(next);
-    document.body.classList.toggle("hc-mode", next);
-  }
-  function toggleLarge() {
-    const next = !large; setLarge(next);
-    document.body.classList.toggle("large-text", next);
-  }
-  function toggleMotion() {
-    const next = !motion; setMotion(next);
-    document.body.classList.toggle("reduce-motion", next);
-  }
+  useEffect(() => {
+    const html = document.documentElement;
+    html.style.setProperty("--ada-text-scale", biggerText ? "120%" : "100%");
+    html.classList.toggle("ada-text-scaled",   biggerText);
+    html.classList.toggle("ada-high-contrast", highContrast);
+    html.classList.toggle("ada-highlight-links", highlightLinks);
+    html.classList.toggle("ada-dyslexia",      dyslexiaFont);
+    html.classList.toggle("ada-text-spacing",  textSpacing);
+    html.classList.toggle("ada-grayscale",     grayscale);
+  }, [biggerText, highContrast, highlightLinks, dyslexiaFont, textSpacing, grayscale]);
+
+  const resetAll = () => {
+    setBiggerText(false); setHighContrast(false); setHighlightLinks(false);
+    setDyslexiaFont(false); setTextSpacing(false); setGrayscale(false);
+  };
+
+  // Inline SVG icons (no lucide dependency needed)
+  const icons = {
+    person: <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="5" r="1.5"/><path d="M8 9h8l-1 5h-2.5v6h-1V14H9l-1-5z"/><path d="M10 14l-1.5 4M14 14l1.5 4"/></svg>,
+    close: <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M18 6L6 18M6 6l12 12"/></svg>,
+    zoom: <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35M11 8v6M8 11h6"/></svg>,
+    eye: <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>,
+    link: <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M10 13a5 5 0 007.54.54l3-3a5 5 0 00-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 00-7.54-.54l-3 3a5 5 0 007.07 7.07l1.71-1.71"/></svg>,
+    book: <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M4 19.5A2.5 2.5 0 016.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z"/></svg>,
+    type: <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="4 7 4 4 20 4 20 7"/><line x1="9" y1="20" x2="15" y2="20"/><line x1="12" y1="4" x2="12" y2="20"/></svg>,
+    palette: <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="13.5" cy="6.5" r=".5"/><circle cx="17.5" cy="10.5" r=".5"/><circle cx="8.5" cy="7.5" r=".5"/><circle cx="6.5" cy="12.5" r=".5"/><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10c.926 0 1.648-.746 1.648-1.688 0-.437-.18-.835-.437-1.125-.29-.289-.438-.652-.438-1.125a1.64 1.64 0 011.668-1.668h1.996c3.051 0 5.555-2.503 5.555-5.554C21.965 6.012 17.461 2 12 2z"/></svg>,
+    refresh: <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 102.13-9.36L1 10"/></svg>,
+    moon: <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>,
+    sun: <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>,
+  };
+
+  const Option = ({ active, onClick, icon, label, desc }) => (
+    <button onClick={onClick} aria-pressed={active}
+      style={{ width: "100%", display: "flex", alignItems: "center", padding: "12px", borderRadius: 12, border: `1px solid ${active ? "#3b82f6" : "rgba(255,255,255,0.05)"}`, background: active ? "rgba(59,130,246,0.1)" : "rgba(255,255,255,0.02)", cursor: "pointer", textAlign: "left", transition: "all 0.15s", marginBottom: 10 }}
+      onMouseEnter={e => { if (!active) e.currentTarget.style.background = "rgba(255,255,255,0.05)"; }}
+      onMouseLeave={e => { if (!active) e.currentTarget.style.background = "rgba(255,255,255,0.02)"; }}>
+      <div style={{ flexShrink: 0, padding: 10, borderRadius: 8, marginRight: 14, background: active ? "#3b82f6" : "rgba(255,255,255,0.05)", color: active ? "#fff" : "#b8c4d4", display: "flex" }}>
+        {icon}
+      </div>
+      <div>
+        <div style={{ fontFamily: "'Source Sans 3', sans-serif", fontSize: 14, fontWeight: 600, color: active ? "#3b82f6" : "#f8fafc" }}>{label}</div>
+        <div style={{ fontFamily: "'Source Sans 3', sans-serif", fontSize: 12, color: "#8b9bb4", marginTop: 2 }}>{desc}</div>
+      </div>
+    </button>
+  );
 
   return (
     <>
+      {/* Panel */}
       {open && (
-        <div className="ada-panel" role="dialog" aria-label="Accessibility options" aria-modal="false" style={{ background: S.adaPanelBg, borderColor: S.adaPanelBorder }}>
-          <div style={{ fontFamily: "'Source Sans 3', sans-serif", fontSize: 12, color: S.dim, letterSpacing: "0.1em", textTransform: "uppercase", marginBottom: 12 }}>Accessibility</div>
-          <button className="ada-btn" onClick={toggleHC} aria-pressed={hc}>
-            <span aria-hidden="true">🔆</span>
-            <span>{hc ? "Normal Contrast" : "High Contrast"}</span>
-          </button>
-          <button className="ada-btn" onClick={toggleLarge} aria-pressed={large}>
-            <span aria-hidden="true">🔤</span>
-            <span>{large ? "Normal Text" : "Larger Text"}</span>
-          </button>
-          <button className="ada-btn" onClick={toggleMotion} aria-pressed={motion}>
-            <span aria-hidden="true">⏸</span>
-            <span>{motion ? "Allow Motion" : "Reduce Motion"}</span>
-          </button>
-          <button className="ada-btn" onClick={onToggleDark} aria-pressed={!darkMode}>
-            <span aria-hidden="true">{darkMode ? "☀️" : "🌙"}</span>
-            <span>{darkMode ? "Light Mode" : "Dark Mode"}</span>
-          </button>
-          <button className="ada-btn" onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })} aria-label="Return to top of page">
-            <span aria-hidden="true">⬆</span>
-            <span>Back to Top</span>
-          </button>
+        <div role="dialog" aria-label="Accessibility options" aria-modal="false"
+          style={{ position: "fixed", bottom: 88, left: 16, zIndex: 9999, width: "min(600px, calc(100vw - 2rem))", maxHeight: "calc(100vh - 6rem)", display: "flex", flexDirection: "column", background: "#0b1220", border: "1px solid rgba(255,255,255,0.09)", borderRadius: 16, boxShadow: "0 8px 40px rgba(0,0,0,0.5)", overflow: "hidden" }}>
+          {/* Header */}
+          <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", padding: "16px 18px", borderBottom: "1px solid rgba(255,255,255,0.09)", background: "#020617", flexShrink: 0 }}>
+            <div style={{ display: "flex", alignItems: "center", gap: 8, fontFamily: "'Source Sans 3', sans-serif", fontSize: 15, fontWeight: 600, color: "#f8fafc" }}>
+              <span style={{ color: "#3b82f6" }}>{icons.person}</span>
+              Accessibility Menu
+            </div>
+            <button onClick={() => setOpen(false)} aria-label="Close accessibility menu"
+              style={{ background: "none", border: "none", cursor: "pointer", color: "#6b7f99", display: "flex", padding: 4, transition: "color 0.15s" }}
+              onMouseEnter={e => e.currentTarget.style.color = "#f8fafc"}
+              onMouseLeave={e => e.currentTarget.style.color = "#6b7f99"}>
+              {icons.close}
+            </button>
+          </div>
+          {/* Options grid */}
+          <div style={{ padding: 16, overflowY: "auto", flex: 1, display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(240px, 1fr))", gap: 0 }}>
+            <Option active={biggerText}    onClick={() => setBiggerText(v => !v)}     icon={icons.zoom}    label="Bigger Text"       desc="Increase overall font size" />
+            <Option active={highContrast}  onClick={() => setHighContrast(v => !v)}   icon={icons.eye}     label="High Contrast"     desc="Enhance color contrast" />
+            <Option active={highlightLinks} onClick={() => setHighlightLinks(v => !v)} icon={icons.link}   label="Highlight Links"   desc="Make links more visible" />
+            <Option active={dyslexiaFont}  onClick={() => setDyslexiaFont(v => !v)}   icon={icons.book}    label="Dyslexia Friendly" desc="Switch to readable font" />
+            <Option active={textSpacing}   onClick={() => setTextSpacing(v => !v)}    icon={icons.type}    label="Text Spacing"      desc="Increase letter & word spacing" />
+            <Option active={grayscale}     onClick={() => setGrayscale(v => !v)}      icon={icons.palette} label="Grayscale"         desc="Remove colors from the page" />
+            <Option active={!darkMode}     onClick={onToggleDark}                     icon={darkMode ? icons.sun : icons.moon} label={darkMode ? "Light Mode" : "Dark Mode"} desc="Toggle light/dark theme" />
+          </div>
+          {/* Footer reset */}
+          <div style={{ padding: "14px 16px", borderTop: "1px solid rgba(255,255,255,0.09)", background: "#020617", flexShrink: 0 }}>
+            <button onClick={resetAll}
+              style={{ width: "100%", display: "flex", alignItems: "center", justifyContent: "center", gap: 8, padding: "10px", background: "rgba(255,255,255,0.05)", border: "none", borderRadius: 8, fontFamily: "'Source Sans 3', sans-serif", fontSize: 14, fontWeight: 500, color: "#f8fafc", cursor: "pointer", transition: "background 0.15s" }}
+              onMouseEnter={e => e.currentTarget.style.background = "rgba(255,255,255,0.1)"}
+              onMouseLeave={e => e.currentTarget.style.background = "rgba(255,255,255,0.05)"}>
+              {icons.refresh} Reset Settings
+            </button>
+          </div>
         </div>
       )}
-      <button
-        className="ada-trigger"
-        onClick={() => setOpen(o => !o)}
+      {/* Trigger — always bottom-left */}
+      <button onClick={() => setOpen(o => !o)}
         aria-label={open ? "Close accessibility menu" : "Open accessibility menu"}
-        aria-expanded={open}
-        aria-haspopup="dialog"
-        title="Accessibility options"
-      >
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-          <circle cx="12" cy="4.5" r="1.5" fill="white"/>
-          <path d="M7 8h10l-1 4h-3v7h-2v-7H8L7 8z" fill="white"/>
-          <path d="M9 12.5l-2 4.5M15 12.5l2 4.5" stroke="white" strokeWidth="1.5" strokeLinecap="round"/>
-        </svg>
+        aria-expanded={open} aria-haspopup="dialog"
+        style={{ position: "fixed", bottom: 24, left: 24, zIndex: 9999, width: 52, height: 52, borderRadius: "50%", background: "#3b82f6", border: "none", cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center", color: "#fff", boxShadow: "0 4px 20px rgba(59,130,246,0.5)", transition: "transform 0.15s, box-shadow 0.15s" }}
+        onMouseEnter={e => { e.currentTarget.style.transform = "scale(1.08)"; e.currentTarget.style.boxShadow = "0 6px 28px rgba(59,130,246,0.65)"; }}
+        onMouseLeave={e => { e.currentTarget.style.transform = "scale(1)"; e.currentTarget.style.boxShadow = "0 4px 20px rgba(59,130,246,0.5)"; }}>
+        {icons.person}
       </button>
     </>
   );
@@ -911,33 +954,22 @@ export default function App() {
     .cta-grid { flex-direction: row !important; align-items: stretch; }
     .cta-grid > * { flex: 1; min-width: 0; }
   }
-  /* ADA toolbar */
-  .ada-panel { position: fixed; bottom: 72px; right: 16px; border-radius: 14px; padding: 16px; width: 220px; z-index: 9999; box-shadow: 0 8px 32px rgba(0,0,0,0.3); transition: background 0.3s, border-color 0.3s; }
-  .ada-btn { display: flex; align-items: center; gap: 10px; width: 100%; border-radius: 8px; padding: 9px 12px; font-family: 'Source Sans 3', sans-serif; font-size: 13px; cursor: pointer; margin-bottom: 6px; transition: background 0.15s; border: 1px solid; }
-  .ada-btn:last-child { margin-bottom: 0; }
-  .ada-btn:hover { background: rgba(255,255,255,0.12); }
-  .ada-btn:focus { outline: 2px solid #3b82f6; outline-offset: 2px; }
-  .ada-trigger { position: fixed; bottom: 16px; right: 16px; width: 48px; height: 48px; border-radius: 50%; background: #3b82f6; border: none; cursor: pointer; z-index: 9999; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 20px rgba(59,130,246,0.5); transition: transform 0.15s, box-shadow 0.15s; }
-  .ada-trigger:hover { transform: scale(1.08); box-shadow: 0 6px 28px rgba(59,130,246,0.65); }
-  .ada-trigger:focus { outline: 3px solid #93c5fd; outline-offset: 3px; }
-  /* High contrast mode */
-  body.hc-mode { filter: contrast(1.5) brightness(1.1); }
-  /* Large text mode */
-  body.large-text * { font-size: 110% !important; }
-  /* Reduced motion */
-  body.reduce-motion *, body.reduce-motion *::before, body.reduce-motion *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+  /* ADA feature classes */
+  .ada-text-scaled * { font-size: calc(1em * var(--ada-text-scale, 100%) / 100) !important; }
+  html.ada-high-contrast { filter: contrast(1.5) brightness(1.08); }
+  html.ada-highlight-links a { outline: 2px solid #f59e0b !important; outline-offset: 2px; text-decoration: underline !important; }
+  html.ada-dyslexia * { font-family: "Arial", sans-serif !important; letter-spacing: 0.05em !important; word-spacing: 0.1em !important; }
+  html.ada-text-spacing * { letter-spacing: 0.12em !important; word-spacing: 0.16em !important; line-height: 1.9 !important; }
+  html.ada-grayscale { filter: grayscale(100%); }
   /* Focus outlines for keyboard nav */
   :focus-visible { outline: 2px solid #3b82f6 !important; outline-offset: 3px !important; }
-  /* On quiz screen: move ADA to bottom-left so it never overlaps right-aligned nav buttons */
-  body.quiz-active .ada-trigger { left: 16px; right: auto; }
-  body.quiz-active .ada-panel { left: 16px; right: auto; }
   /* Skip link */
   .skip-link { position: absolute; top: -100px; left: 16px; background: #3b82f6; color: #fff; padding: 8px 16px; border-radius: 6px; font-family: 'Source Sans 3', sans-serif; font-size: 14px; font-weight: 600; text-decoration: none; z-index: 99999; transition: top 0.2s; }
   .skip-link:focus { top: 16px; }
 `}</style>
       <main id="main-content">
-        {screen === "hero"    && <Hero onStart={() => { document.body.classList.add("quiz-active"); setScreen("quiz"); }} />}
-        {screen === "quiz"    && <Quiz onComplete={s => { document.body.classList.remove("quiz-active"); setScores(s); setScreen("gate"); }} />}
+        {screen === "hero"    && <Hero onStart={() => setScreen("quiz") />}
+        {screen === "quiz"    && <Quiz onComplete={s => { setScores(s); setScreen("gate"); }} />}
         {screen === "gate"    && <EmailGate scores={scores} onSubmit={() => setScreen("loading")} />}
         {screen === "loading" && <Loading onDone={() => setScreen("results")} />}
         {screen === "results" && <Results scores={scores} />}
