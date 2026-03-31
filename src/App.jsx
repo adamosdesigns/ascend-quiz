@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, createContext, useContext } from "react";
 
 // ── QUESTIONS ────────────────────────────────────────────────────────────────
 const questions = [
@@ -320,20 +320,59 @@ async function sendNotification(name, email, careerName) {
 // ── DESIGN TOKENS ─────────────────────────────────────────────────────────────
 const FONTS = `@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@600;700&family=Source+Sans+3:wght@400;500;600&display=swap');`;
 
-const S = {
-  bg: "#020617",
-  bgCard: "#0b1220",
-  border: "rgba(255,255,255,0.09)",
-  text: "#f8fafc",
-  muted: "#b8c4d4",   // lifted from #94a3b8 for AA contrast
-  dim: "#6b7f99",     // lifted from #475569 for readability
-  accent: "#3b82f6",
-  display: "'Oswald', sans-serif",
-  body: "'Source Sans 3', sans-serif",
-};
+function getTheme(dark) {
+  return dark ? {
+    bg: "#020617",
+    bgGrad: "linear-gradient(180deg, #020617 0%, #0f172a 100%)",
+    bgCard: "#0b1220",
+    border: "rgba(255,255,255,0.09)",
+    text: "#f8fafc",
+    muted: "#b8c4d4",
+    dim: "#6b7f99",
+    accent: "#3b82f6",
+    display: "'Oswald', sans-serif",
+    body: "'Source Sans 3', sans-serif",
+    scrollTrack: "#020617",
+    scrollThumb: "rgba(255,255,255,0.14)",
+    gridLine: "rgba(255,255,255,0.018)",
+    adaPanelBg: "#0f1a2e",
+    adaPanelBorder: "rgba(255,255,255,0.15)",
+    adaBtnBg: "rgba(255,255,255,0.06)",
+    adaBtnBorder: "rgba(255,255,255,0.1)",
+    adaBtnColor: "#f8fafc",
+  } : {
+    bg: "#f4f4f1",
+    bgGrad: "linear-gradient(180deg, #f4f4f1 0%, #e8e8e2 100%)",
+    bgCard: "#ffffff",
+    border: "rgba(0,0,0,0.09)",
+    text: "#0f172a",
+    muted: "#334155",
+    dim: "#64748b",
+    accent: "#2563eb",
+    display: "'Oswald', sans-serif",
+    body: "'Source Sans 3', sans-serif",
+    scrollTrack: "#f4f4f1",
+    scrollThumb: "rgba(0,0,0,0.18)",
+    gridLine: "rgba(0,0,0,0.05)",
+    adaPanelBg: "#ffffff",
+    adaPanelBorder: "rgba(0,0,0,0.12)",
+    adaBtnBg: "rgba(0,0,0,0.04)",
+    adaBtnBorder: "rgba(0,0,0,0.1)",
+    adaBtnColor: "#0f172a",
+  };
+}
+
+// Theme context so all components can read it
+const ThemeCtx = createContext(getTheme(true));
+const useS = () => useContext(ThemeCtx);
+
+// For backward compat — components that use S directly will be updated to useS()
+// We keep a module-level S as a fallback that gets overwritten at runtime via ref
+let S = getTheme(true);
 
 // ── HERO ──────────────────────────────────────────────────────────────────────
 function Hero({ onStart }) {
+  const S = useS();
   const [in_, setIn] = useState(false);
   useEffect(() => { setTimeout(() => setIn(true), 60); }, []);
 
@@ -341,9 +380,9 @@ function Hero({ onStart }) {
     <div style={{ minHeight: "100vh", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", padding: "48px 24px", position: "relative", overflow: "hidden" }}>
       {/* ambient bg */}
       <div style={{ position: "absolute", inset: 0, overflow: "hidden", pointerEvents: "none" }}>
-        <div style={{ position: "absolute", top: "15%", left: "8%", width: 560, height: 560, borderRadius: "50%", background: "radial-gradient(circle, rgba(59,130,246,0.13) 0%, transparent 70%)", filter: "blur(48px)" }} />
-        <div style={{ position: "absolute", bottom: "15%", right: "5%", width: 420, height: 420, borderRadius: "50%", background: "radial-gradient(circle, rgba(139,92,246,0.08) 0%, transparent 70%)", filter: "blur(48px)" }} />
-        <div style={{ position: "absolute", inset: 0, backgroundImage: "linear-gradient(rgba(255,255,255,0.018) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.018) 1px, transparent 1px)", backgroundSize: "60px 60px" }} />
+        <div style={{ position: "absolute", top: "15%", left: "8%", width: 560, height: 560, borderRadius: "50%", background: `radial-gradient(circle, ${S.accent}22 0%, transparent 70%)`, filter: "blur(48px)" }} />
+        <div style={{ position: "absolute", bottom: "15%", right: "5%", width: 420, height: 420, borderRadius: "50%", background: `radial-gradient(circle, rgba(139,92,246,0.12) 0%, transparent 70%)`, filter: "blur(48px)" }} />
+        <div style={{ position: "absolute", inset: 0, backgroundImage: `linear-gradient(${S.gridLine} 1px, transparent 1px), linear-gradient(90deg, ${S.gridLine} 1px, transparent 1px)`, backgroundSize: "60px 60px" }} />
       </div>
 
       <div style={{ position: "relative", maxWidth: 700, width: "100%", textAlign: "center", opacity: in_ ? 1 : 0, transform: in_ ? "translateY(0)" : "translateY(28px)", transition: "opacity 0.8s ease, transform 0.8s ease" }}>
@@ -386,6 +425,7 @@ function Hero({ onStart }) {
 
 // ── QUIZ ──────────────────────────────────────────────────────────────────────
 function Quiz({ onComplete }) {
+  const S = useS();
   const [current, setCurrent] = useState(0);
   const [answers, setAnswers] = useState(Array(questions.length).fill(null));
   const [animating, setAnimating] = useState(false);
@@ -443,10 +483,10 @@ function Quiz({ onComplete }) {
                 const isSel = selected === i;
                 return (
                   <button key={i} onClick={() => selectAnswer(i)}
-                    style={{ background: isSel ? "rgba(59,130,246,0.13)" : "rgba(11,18,32,0.7)", border: isSel ? "1px solid rgba(59,130,246,0.55)" : `1px solid ${S.border}`, borderRadius: 12, padding: "17px 20px", cursor: "pointer", display: "flex", alignItems: "flex-start", gap: 14, textAlign: "left", transition: "all 0.16s ease", transform: isSel ? "translateX(4px)" : "translateX(0)", boxShadow: isSel ? "0 0 0 1px rgba(59,130,246,0.25), 0 4px 20px rgba(59,130,246,0.1)" : "none" }}
-                    onMouseEnter={e => { if (!isSel) { e.currentTarget.style.background = "rgba(255,255,255,0.04)"; e.currentTarget.style.borderColor = "rgba(255,255,255,0.14)"; } }}
-                    onMouseLeave={e => { if (!isSel) { e.currentTarget.style.background = "rgba(11,18,32,0.7)"; e.currentTarget.style.borderColor = S.border; } }}>
-                    <div style={{ minWidth: 26, height: 26, borderRadius: 7, background: isSel ? S.accent : "rgba(255,255,255,0.07)", display: "flex", alignItems: "center", justifyContent: "center", fontFamily: S.display, fontSize: 11, fontWeight: 800, color: isSel ? "#fff" : S.dim, flexShrink: 0, marginTop: 1, transition: "all 0.16s" , textTransform: "uppercase" }}>
+                    style={{ background: isSel ? `rgba(59,130,246,0.13)` : S.bgCard, border: isSel ? "1px solid rgba(59,130,246,0.55)" : `1px solid ${S.border}`, borderRadius: 12, padding: "17px 20px", cursor: "pointer", display: "flex", alignItems: "flex-start", gap: 14, textAlign: "left", transition: "all 0.16s ease", transform: isSel ? "translateX(4px)" : "translateX(0)", boxShadow: isSel ? "0 0 0 1px rgba(59,130,246,0.25), 0 4px 20px rgba(59,130,246,0.1)" : "none" }}
+                    onMouseEnter={e => { if (!isSel) { e.currentTarget.style.background = `rgba(${S.bg === "#020617" ? "255,255,255,0.04" : "0,0,0,0.04"})`; e.currentTarget.style.borderColor = S.border; } }}
+                    onMouseLeave={e => { if (!isSel) { e.currentTarget.style.background = S.bgCard; e.currentTarget.style.borderColor = S.border; } }}>
+                    <div style={{ minWidth: 26, height: 26, borderRadius: 7, background: isSel ? S.accent : S.border, display: "flex", alignItems: "center", justifyContent: "center", fontFamily: S.display, fontSize: 11, fontWeight: 800, color: isSel ? "#fff" : S.dim, flexShrink: 0, marginTop: 1, transition: "all 0.16s" , textTransform: "uppercase" }}>
                       {letters[i]}
                     </div>
                     <span style={{ fontFamily: S.body, fontSize: 15, lineHeight: 1.55, color: isSel ? S.text : S.muted, transition: "color 0.16s" }}>
@@ -461,7 +501,7 @@ function Quiz({ onComplete }) {
       </div>
 
       {/* sticky nav bar */}
-      <div style={{ position: "fixed", bottom: 0, left: 0, right: 0, background: "linear-gradient(to top, #020617 60%, transparent)", padding: "20px 24px 28px", zIndex: 100 }}>
+      <div style={{ position: "fixed", bottom: 0, left: 0, right: 0, background: `linear-gradient(to top, ${S.bg} 60%, transparent)`, padding: "20px 24px 28px", zIndex: 100 }}>
         <div style={{ maxWidth: 700, margin: "0 auto", display: "flex", alignItems: "center", justifyContent: "flex-end", gap: 14 }}>
           {current > 0 && (
             <button onClick={() => go(false)}
@@ -472,7 +512,7 @@ function Quiz({ onComplete }) {
             </button>
           )}
           <button onClick={() => go(true)} disabled={selected === null}
-            style={{ background: selected !== null ? "linear-gradient(135deg, #3b82f6, #2563eb)" : "rgba(255,255,255,0.07)", color: selected !== null ? "#fff" : "#334155", border: "none", borderRadius: 10, padding: "14px 36px", fontSize: 15, fontFamily: S.body, fontWeight: 700, cursor: selected !== null ? "pointer" : "not-allowed", letterSpacing: "0.02em", boxShadow: selected !== null ? "0 4px 20px rgba(59,130,246,0.4)" : "none", transition: "all 0.2s ease" }}
+            style={{ background: selected !== null ? `linear-gradient(135deg, ${S.accent}, #2563eb)` : S.border, color: selected !== null ? "#fff" : S.dim, border: "none", borderRadius: 10, padding: "14px 36px", fontSize: 15, fontFamily: S.body, fontWeight: 700, cursor: selected !== null ? "pointer" : "not-allowed", letterSpacing: "0.02em", boxShadow: selected !== null ? "0 4px 20px rgba(59,130,246,0.4)" : "none", transition: "all 0.2s ease" }}
             onMouseEnter={e => { if (selected !== null) e.target.style.transform = "translateY(-1px)"; }}
             onMouseLeave={e => { e.target.style.transform = "translateY(0)"; }}>
             {current + 1 === questions.length ? "See My Results" : "Next →"}
@@ -485,6 +525,7 @@ function Quiz({ onComplete }) {
 
 // ── LOADING ───────────────────────────────────────────────────────────────────
 function Loading({ onDone }) {
+  const S = useS();
   const [pct, setPct] = useState(0);
   const phases = ["Analyzing your responses…", "Mapping career alignments…", "Generating your result…"];
   const phase = pct < 33 ? 0 : pct < 66 ? 1 : 2;
@@ -498,7 +539,7 @@ function Loading({ onDone }) {
         <div style={{ position: "relative", width: 72, height: 72, margin: "0 auto 36px" }}>
           <div style={{ position: "absolute", inset: 0, borderRadius: "50%", border: "2px solid rgba(255,255,255,0.06)" }} />
           <div style={{ position: "absolute", inset: 0, borderRadius: "50%", border: "2px solid transparent", borderTopColor: S.accent, animation: "spin 1s linear infinite" }} />
-          <div style={{ position: "absolute", inset: 10, borderRadius: "50%", background: "rgba(59,130,246,0.08)", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 20 }}>✦</div>
+          <div style={{ position: "absolute", inset: 10, borderRadius: "50%", background: `${S.accent}14`, display: "flex", alignItems: "center", justifyContent: "center", fontSize: 20 }}>✦</div>
         </div>
         <p style={{ fontFamily: S.body, fontSize: 15, color: S.muted, marginBottom: 28, minHeight: 22 }}>{phases[phase]}</p>
         <div style={{ height: 3, background: S.border, borderRadius: 4, overflow: "hidden" }}>
@@ -512,6 +553,7 @@ function Loading({ onDone }) {
 
 // ── EMAIL GATE ────────────────────────────────────────────────────────────────
 function EmailGate({ scores, onSubmit }) {
+  const S = useS();
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [loading, setLoading] = useState(false);
@@ -529,7 +571,7 @@ function EmailGate({ scores, onSubmit }) {
     onSubmit();
   }
 
-  const inp = { width: "100%", background: "rgba(11,18,32,0.9)", border: `1px solid ${S.border}`, borderRadius: 10, padding: "14px 16px", fontSize: 15, fontFamily: S.body, color: S.text, outline: "none", boxSizing: "border-box", transition: "border 0.18s" };
+  const inp = { width: "100%", background: S.bgCard, border: `1px solid ${S.border}`, borderRadius: 10, padding: "14px 16px", fontSize: 15, fontFamily: S.body, color: S.text, outline: "none", boxSizing: "border-box", transition: "border 0.18s" };
 
   return (
     <div style={{ minHeight: "100vh", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", padding: "48px 24px", position: "relative" }}>
@@ -567,6 +609,7 @@ function EmailGate({ scores, onSubmit }) {
 
 // ── RESULTS ───────────────────────────────────────────────────────────────────
 function Results({ scores }) {
+  const S = useS();
   const [step, setStep] = useState(0);
   useEffect(() => {
     const t1 = setTimeout(() => setStep(1), 80);
@@ -599,7 +642,7 @@ function Results({ scores }) {
       <div style={{ position: "relative", maxWidth: 700, margin: "0 auto" }}>
         <Logo />
 
-        {/* ── TOP RESULT CARD — identity only, no pricing ── */}
+        {/* ── TOP RESULT CARD — identity only ── */}
         <div style={{ ...fade(1), ...card({ border: `1px solid ${career.color}35`, boxShadow: `0 0 56px ${career.color}14, 0 20px 56px rgba(0,0,0,0.4)`, marginBottom: 14, position: "relative", overflow: "hidden" }) }}>
           <div style={{ position: "absolute", top: 0, left: 0, right: 0, height: 3, background: `linear-gradient(90deg, transparent, ${career.color}, transparent)` }} />
           <div style={{ display: "flex", gap: 18, alignItems: "flex-start", flexWrap: "wrap" }}>
@@ -612,20 +655,8 @@ function Results({ scores }) {
           </div>
         </div>
 
-        {/* ── WHY THIS IS YOUR PATH ── */}
-        <div style={{ ...fade(2, 0), ...card() }}>
-          <div style={{ fontFamily: S.body, fontSize: 11, color: career.color, letterSpacing: "0.14em", textTransform: "uppercase", fontWeight: 700, marginBottom: 14 }}>🧭 Why This Is Your Path</div>
-          <p style={{ fontFamily: S.body, fontSize: 15, color: "#cbd5e1", lineHeight: 1.72, margin: 0 }}>{career.whyYou}</p>
-        </div>
-
-        {/* ── THE OPPORTUNITY ── */}
-        <div style={{ ...fade(2, 0.07), ...card() }}>
-          <div style={{ fontFamily: S.body, fontSize: 11, color: "#f59e0b", letterSpacing: "0.14em", textTransform: "uppercase", fontWeight: 700, marginBottom: 14 }}>💰 The Opportunity</div>
-          <p style={{ fontFamily: S.body, fontSize: 15, color: "#cbd5e1", lineHeight: 1.72, margin: 0 }}>{career.opportunity}</p>
-        </div>
-
-        {/* ── PRIMARY PRICING TIERS — after Opportunity ── */}
-        <div style={{ ...fade(2, 0.12) }}>
+        {/* ── PRIMARY PRICING TIERS — immediately after result ── */}
+        <div style={{ ...fade(1, 0.15) }}>
           <div style={{ fontFamily: S.body, fontSize: 11, color: S.dim, letterSpacing: "0.14em", textTransform: "uppercase", fontWeight: 600, marginBottom: 12, paddingLeft: 2 }}>🎯 Get Your {career.name} Roadmap</div>
           <div className="cta-grid" style={{ display: "flex", flexDirection: "column", gap: 12 }}>
 
@@ -703,6 +734,18 @@ function Results({ scores }) {
           </div>
         </div>
 
+        {/* ── WHY THIS IS YOUR PATH ── */}
+        <div style={{ ...fade(2, 0), ...card() }}>
+          <div style={{ fontFamily: S.body, fontSize: 11, color: career.color, letterSpacing: "0.14em", textTransform: "uppercase", fontWeight: 700, marginBottom: 14 }}>🧭 Why This Is Your Path</div>
+          <p style={{ fontFamily: S.body, fontSize: 15, color: "#cbd5e1", lineHeight: 1.72, margin: 0 }}>{career.whyYou}</p>
+        </div>
+
+        {/* ── THE OPPORTUNITY ── */}
+        <div style={{ ...fade(2, 0.07), ...card() }}>
+          <div style={{ fontFamily: S.body, fontSize: 11, color: "#f59e0b", letterSpacing: "0.14em", textTransform: "uppercase", fontWeight: 700, marginBottom: 14 }}>💰 The Opportunity</div>
+          <p style={{ fontFamily: S.body, fontSize: 15, color: "#cbd5e1", lineHeight: 1.72, margin: 0 }}>{career.opportunity}</p>
+        </div>
+
         {/* ── RUNNER UP + CONDENSED MINI LINKS ── */}
         <div style={{ ...fade(3, 0), ...card({ marginTop: 14 }) }}>
           {/* Runner-up identity row */}
@@ -718,7 +761,7 @@ function Results({ scores }) {
           {/* Condensed Core + Pro links for runner-up */}
           <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 10 }}>
             <a href={runner.coreUrl} target="_blank" rel="noopener noreferrer"
-              style={{ display: "flex", flexDirection: "column", gap: 4, background: "rgba(255,255,255,0.03)", border: `1px solid ${S.border}`, borderRadius: 10, padding: "14px 16px", textDecoration: "none", transition: "all 0.15s" }}
+              style={{ display: "flex", flexDirection: "column", gap: 4, background: S.bgCard, border: `1px solid ${S.border}`, borderRadius: 10, padding: "14px 16px", textDecoration: "none", transition: "all 0.15s" }}
               onMouseEnter={e => { e.currentTarget.style.background = "rgba(255,255,255,0.07)"; e.currentTarget.style.borderColor = "rgba(255,255,255,0.15)"; }}
               onMouseLeave={e => { e.currentTarget.style.background = "rgba(255,255,255,0.03)"; e.currentTarget.style.borderColor = S.border; }}>
               <div style={{ fontFamily: S.body, fontSize: 10, color: S.dim, letterSpacing: "0.1em", textTransform: "uppercase" }}>Core</div>
@@ -747,7 +790,7 @@ function Results({ scores }) {
               <div key={key} style={{ display: "flex", alignItems: "center", gap: 12 }}>
                 <span style={{ fontSize: 15, flexShrink: 0 }}>{careerEmojis[key]}</span>
                 <div style={{ fontFamily: S.body, fontSize: 13, color: S.muted, width: 148, flexShrink: 0 }}>{careers[key].name}</div>
-                <div style={{ flex: 1, height: 5, background: "rgba(255,255,255,0.05)", borderRadius: 3, overflow: "hidden" }}>
+                <div style={{ flex: 1, height: 5, background: S.border, borderRadius: 3, overflow: "hidden" }}>
                   <div style={{ height: "100%", width: step >= 3 ? `${(val/maxScore)*100}%` : "0%", background: barColors[key], borderRadius: 3, transition: "width 1s cubic-bezier(0.4,0,0.2,1) 0.15s", boxShadow: key === topKey ? `0 0 8px ${barColors[key]}80` : "none" }} />
                 </div>
                 <div style={{ fontFamily: S.display, fontSize: 17, fontWeight: 800, color: key === topKey ? barColors[key] : S.dim, width: 22, textAlign: "right", flexShrink: 0 , textTransform: "uppercase" }}>{val}</div>
@@ -757,9 +800,9 @@ function Results({ scores }) {
         </div>
 
         {/* ── DISCLAIMER ── */}
-        <div style={{ ...fade(3, 0.15), background: "rgba(255,255,255,0.02)", border: `1px solid ${S.border}`, borderRadius: 12, padding: "18px 22px", marginBottom: 14 }}>
+        <div style={{ ...fade(3, 0.15), background: `${S.border}`, border: `1px solid ${S.border}`, borderRadius: 12, padding: "18px 22px", marginBottom: 14 }}>
           <p style={{ fontFamily: S.body, fontSize: 12, color: S.dim, lineHeight: 1.65, margin: 0, textAlign: "center" }}>
-            <strong style={{ color: "#475569" }}>Disclaimer:</strong> Ascend provides educational and informational content only. This is not a licensing course and does not constitute legal, financial, or professional advice. The roadmap is designed to help users become entry-ready, not to guarantee outcomes. Individual results vary and users are responsible for their own career decisions.
+            <strong style={{ color: S.muted }}>Disclaimer:</strong> Ascend provides educational and informational content only. This is not a licensing course and does not constitute legal, financial, or professional advice. The roadmap is designed to help users become entry-ready, not to guarantee outcomes. Individual results vary and users are responsible for their own career decisions.
           </p>
         </div>
 
@@ -771,7 +814,7 @@ function Results({ scores }) {
             onMouseLeave={e => { e.target.style.borderColor = S.border; e.target.style.color = S.dim; }}>
             ↩ Retake the Quiz
           </button>
-          <div style={{ fontFamily: S.body, fontSize: 11, color: "#1e293b", marginTop: 20, letterSpacing: "0.1em", textTransform: "uppercase" }}>Powered by Ascend · Modern Career Guidance</div>
+          <div style={{ fontFamily: S.body, fontSize: 11, color: S.dim, marginTop: 20, letterSpacing: "0.1em", textTransform: "uppercase" }}>Powered by Ascend · Modern Career Guidance</div>
         </div>
 
       </div>
@@ -781,11 +824,12 @@ function Results({ scores }) {
 
 
 // ── ADA ACCESSIBILITY TOOLBAR ─────────────────────────────────────────────────
-function ADAToolbar() {
+function ADAToolbar({ darkMode, onToggleDark }) {
   const [open, setOpen] = useState(false);
   const [hc, setHc] = useState(false);
   const [large, setLarge] = useState(false);
   const [motion, setMotion] = useState(false);
+  const S = getTheme(darkMode);
 
   function toggleHC() {
     const next = !hc; setHc(next);
@@ -803,8 +847,8 @@ function ADAToolbar() {
   return (
     <>
       {open && (
-        <div className="ada-panel" role="dialog" aria-label="Accessibility options" aria-modal="false">
-          <div style={{ fontFamily: "'Source Sans 3', sans-serif", fontSize: 12, color: "#6b7f99", letterSpacing: "0.1em", textTransform: "uppercase", marginBottom: 12 }}>Accessibility</div>
+        <div className="ada-panel" role="dialog" aria-label="Accessibility options" aria-modal="false" style={{ background: S.adaPanelBg, borderColor: S.adaPanelBorder }}>
+          <div style={{ fontFamily: "'Source Sans 3', sans-serif", fontSize: 12, color: S.dim, letterSpacing: "0.1em", textTransform: "uppercase", marginBottom: 12 }}>Accessibility</div>
           <button className="ada-btn" onClick={toggleHC} aria-pressed={hc}>
             <span aria-hidden="true">🔆</span>
             <span>{hc ? "Normal Contrast" : "High Contrast"}</span>
@@ -816,6 +860,10 @@ function ADAToolbar() {
           <button className="ada-btn" onClick={toggleMotion} aria-pressed={motion}>
             <span aria-hidden="true">⏸</span>
             <span>{motion ? "Allow Motion" : "Reduce Motion"}</span>
+          </button>
+          <button className="ada-btn" onClick={onToggleDark} aria-pressed={!darkMode}>
+            <span aria-hidden="true">{darkMode ? "☀️" : "🌙"}</span>
+            <span>{darkMode ? "Light Mode" : "Dark Mode"}</span>
           </button>
           <button className="ada-btn" onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })} aria-label="Return to top of page">
             <span aria-hidden="true">⬆</span>
@@ -845,24 +893,27 @@ function ADAToolbar() {
 export default function App() {
   const [screen, setScreen] = useState("hero");
   const [scores, setScores] = useState(null);
+  const [darkMode, setDarkMode] = useState(true);
+  const theme = getTheme(darkMode);
 
   return (
-    <div style={{ minHeight: "100vh", background: "linear-gradient(180deg, #020617 0%, #0f172a 100%)" }}>
+    <ThemeCtx.Provider value={theme}>
+    <div style={{ minHeight: "100vh", background: theme.bgGrad, transition: "background 0.35s ease" }}>
       <a href="#main-content" className="skip-link">Skip to main content</a>
       <style>{`
   ${FONTS}
   * { box-sizing: border-box; margin: 0; padding: 0; }
   ::-webkit-scrollbar { width: 5px; }
-  ::-webkit-scrollbar-track { background: #020617; }
-  ::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.14); border-radius: 3px; }
+  ::-webkit-scrollbar-track { background: ${theme.scrollTrack}; }
+  ::-webkit-scrollbar-thumb { background: ${theme.scrollThumb}; border-radius: 3px; }
   /* Desktop: side-by-side tier cards */
   @media (min-width: 700px) {
     .cta-grid { flex-direction: row !important; align-items: stretch; }
     .cta-grid > * { flex: 1; min-width: 0; }
   }
   /* ADA toolbar */
-  .ada-panel { position: fixed; bottom: 72px; right: 16px; background: #0f1a2e; border: 1px solid rgba(255,255,255,0.15); border-radius: 14px; padding: 16px; width: 220px; z-index: 9999; box-shadow: 0 8px 32px rgba(0,0,0,0.5); }
-  .ada-btn { display: flex; align-items: center; gap: 10px; width: 100%; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; padding: 9px 12px; color: #f8fafc; font-family: 'Source Sans 3', sans-serif; font-size: 13px; cursor: pointer; margin-bottom: 6px; transition: background 0.15s; }
+  .ada-panel { position: fixed; bottom: 72px; right: 16px; border-radius: 14px; padding: 16px; width: 220px; z-index: 9999; box-shadow: 0 8px 32px rgba(0,0,0,0.3); transition: background 0.3s, border-color 0.3s; }
+  .ada-btn { display: flex; align-items: center; gap: 10px; width: 100%; border-radius: 8px; padding: 9px 12px; font-family: 'Source Sans 3', sans-serif; font-size: 13px; cursor: pointer; margin-bottom: 6px; transition: background 0.15s; border: 1px solid; }
   .ada-btn:last-child { margin-bottom: 0; }
   .ada-btn:hover { background: rgba(255,255,255,0.12); }
   .ada-btn:focus { outline: 2px solid #3b82f6; outline-offset: 2px; }
@@ -877,18 +928,22 @@ export default function App() {
   body.reduce-motion *, body.reduce-motion *::before, body.reduce-motion *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
   /* Focus outlines for keyboard nav */
   :focus-visible { outline: 2px solid #3b82f6 !important; outline-offset: 3px !important; }
+  /* On quiz screen: move ADA to bottom-left so it never overlaps right-aligned nav buttons */
+  body.quiz-active .ada-trigger { left: 16px; right: auto; }
+  body.quiz-active .ada-panel { left: 16px; right: auto; }
   /* Skip link */
   .skip-link { position: absolute; top: -100px; left: 16px; background: #3b82f6; color: #fff; padding: 8px 16px; border-radius: 6px; font-family: 'Source Sans 3', sans-serif; font-size: 14px; font-weight: 600; text-decoration: none; z-index: 99999; transition: top 0.2s; }
   .skip-link:focus { top: 16px; }
 `}</style>
       <main id="main-content">
-        {screen === "hero"    && <Hero onStart={() => setScreen("quiz")} />}
-        {screen === "quiz"    && <Quiz onComplete={s => { setScores(s); setScreen("gate"); }} />}
+        {screen === "hero"    && <Hero onStart={() => { document.body.classList.add("quiz-active"); setScreen("quiz"); }} />}
+        {screen === "quiz"    && <Quiz onComplete={s => { document.body.classList.remove("quiz-active"); setScores(s); setScreen("gate"); }} />}
         {screen === "gate"    && <EmailGate scores={scores} onSubmit={() => setScreen("loading")} />}
         {screen === "loading" && <Loading onDone={() => setScreen("results")} />}
         {screen === "results" && <Results scores={scores} />}
       </main>
-      <ADAToolbar />
+      <ADAToolbar darkMode={darkMode} onToggleDark={() => setDarkMode(d => !d)} />
     </div>
+    </ThemeCtx.Provider>
   );
 }
