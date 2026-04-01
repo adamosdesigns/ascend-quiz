@@ -271,13 +271,70 @@ const careers = {
 };
 
 
+// ── LOGO CONFIRM MODAL ───────────────────────────────────────────────────────
+function LogoConfirmModal({ onConfirm, onCancel }) {
+  useEffect(() => {
+    const handler = e => { if (e.key === "Escape") onCancel(); };
+    window.addEventListener("keydown", handler);
+    return () => window.removeEventListener("keydown", handler);
+  }, []);
+  return (
+    <div role="dialog" aria-modal="true" aria-label="Leave confirmation"
+      onClick={onCancel}
+      style={{ position: "fixed", inset: 0, zIndex: 99999, background: "rgba(2,6,23,0.8)", backdropFilter: "blur(4px)", display: "flex", alignItems: "center", justifyContent: "center", padding: 24 }}>
+      <div onClick={e => e.stopPropagation()}
+        style={{ background: "#0b1220", border: "1px solid rgba(255,255,255,0.12)", borderRadius: 18, padding: "36px 32px", maxWidth: 400, width: "100%", boxShadow: "0 24px 64px rgba(0,0,0,0.6)", textAlign: "center" }}>
+        <div style={{ fontSize: 36, marginBottom: 16 }}>⚠️</div>
+        <h3 style={{ fontFamily: "'Oswald', sans-serif", fontSize: 22, fontWeight: 700, color: "#f8fafc", textTransform: "uppercase", marginBottom: 12, letterSpacing: "0.02em" }}>
+          Leave Quiz?
+        </h3>
+        <p style={{ fontFamily: "'Source Sans 3', sans-serif", fontSize: 15, color: "#b8c4d4", lineHeight: 1.6, marginBottom: 28 }}>
+          Your progress will be lost if you leave. Are you sure you want to go to the Ascend website?
+        </p>
+        <div style={{ display: "flex", gap: 10 }}>
+          <button onClick={onCancel}
+            style={{ flex: 1, padding: "13px", background: "rgba(255,255,255,0.06)", border: "1px solid rgba(255,255,255,0.1)", borderRadius: 10, fontFamily: "'Source Sans 3', sans-serif", fontSize: 14, fontWeight: 600, color: "#94a3b8", cursor: "pointer", transition: "all 0.15s" }}
+            onMouseEnter={e => { e.target.style.background = "rgba(255,255,255,0.1)"; e.target.style.color = "#f8fafc"; }}
+            onMouseLeave={e => { e.target.style.background = "rgba(255,255,255,0.06)"; e.target.style.color = "#94a3b8"; }}>
+            Stay Here
+          </button>
+          <button onClick={onConfirm} autoFocus
+            style={{ flex: 1, padding: "13px", background: "linear-gradient(135deg, #3b82f6, #2563eb)", border: "none", borderRadius: 10, fontFamily: "'Source Sans 3', sans-serif", fontSize: 14, fontWeight: 700, color: "#fff", cursor: "pointer", boxShadow: "0 4px 16px rgba(59,130,246,0.4)", transition: "all 0.15s" }}
+            onMouseEnter={e => { e.target.style.transform = "translateY(-1px)"; }}
+            onMouseLeave={e => { e.target.style.transform = "translateY(0)"; }}>
+            Yes, Leave
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 // ── LOGO ──────────────────────────────────────────────────────────────────────
+function LogoButton({ height = 44, centered = false }) {
+  const [showConfirm, setShowConfirm] = useState(false);
+  return (
+    <>
+      <button
+        onClick={() => setShowConfirm(true)}
+        aria-label="Go to Ascend website"
+        style={{ background: "none", border: "none", cursor: "pointer", padding: 0, lineHeight: 0, display: "flex" }}>
+        <img src="/logo.png" alt="Ascend Modern Career Guidance" style={{ height, width: "auto", objectFit: "contain" }} />
+      </button>
+      {showConfirm && (
+        <LogoConfirmModal
+          onConfirm={() => { window.location.href = "http://ascendcareerguidance.com"; }}
+          onCancel={() => setShowConfirm(false)}
+        />
+      )}
+    </>
+  );
+}
+
 function Logo({ style={} }) {
   return (
     <div style={{ display: "flex", justifyContent: "center", marginBottom: 32, ...style }}>
-      <a href="http://ascendcareerguidance.com" target="_blank" rel="noopener noreferrer" style={{ display: "inline-block", lineHeight: 0 }}>
-        <img src="/logo.png" alt="Ascend Modern Career Guidance" style={{ height: 44, width: "auto", objectFit: "contain" }} />
-      </a>
+      <LogoButton height={44} />
     </div>
   );
 }
@@ -388,7 +445,7 @@ function Hero({ onStart }) {
       <div style={{ position: "relative", maxWidth: 700, width: "100%", textAlign: "center", opacity: in_ ? 1 : 0, transform: in_ ? "translateY(0)" : "translateY(28px)", transition: "opacity 0.8s ease, transform 0.8s ease" }}>
         {/* centered logo */}
         <div style={{ display: "flex", justifyContent: "center", marginBottom: 36 }}>
-          <img src="/logo.png" alt="Ascend Modern Career Guidance" style={{ height: 48, width: "auto", objectFit: "contain" }} />
+          <LogoButton height={48} />
         </div>
         {/* eyebrow */}
         <div style={{ fontFamily: S.body, fontSize: 12, color: S.accent, letterSpacing: "0.14em", textTransform: "uppercase", fontWeight: 600, marginBottom: 22 }}>
@@ -468,9 +525,7 @@ function Quiz({ onComplete }) {
           {/* progress */}
           <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 10 }}>
             <div style={{ display: "flex", alignItems: "center", gap: 16 }}>
-              <a href="http://ascendcareerguidance.com" style={{ display: "flex", lineHeight: 0, flexShrink: 0 }}>
-                <img src="/logo.png" alt="Ascend" style={{ height: 28, width: "auto", objectFit: "contain" }} />
-              </a>
+              <LogoButton height={28} />
               <div style={{ width: 1, height: 16, background: S.border }} />
               <div style={{ fontFamily: S.body, fontSize: 12, color: S.dim, letterSpacing: "0.08em", textTransform: "uppercase" }}>Question {current + 1} of {questions.length}</div>
             </div>
@@ -1035,7 +1090,7 @@ export default function App() {
   @import url('https://fonts.googleapis.com/css2?family=Lexend:wght@400;500;600;700&display=swap');
   /* ADA feature classes */
   /* Bigger text: scale root font size so all rem/em units grow proportionally */
-  html.ada-text-scaled { font-size: 120% !important; }
+  html.ada-text-scaled body { zoom: 1.2; }
   html.ada-high-contrast { filter: contrast(1.6) brightness(1.1); }
   /* Highlight links: covers both <a> tags and elements with role=link */
   html.ada-highlight-links a,
