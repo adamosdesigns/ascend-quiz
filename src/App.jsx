@@ -386,7 +386,6 @@ function Hero({ onStart }) {
       </div>
 
       <div style={{ position: "relative", maxWidth: 700, width: "100%", textAlign: "center", opacity: in_ ? 1 : 0, transform: in_ ? "translateY(0)" : "translateY(28px)", transition: "opacity 0.8s ease, transform 0.8s ease" }}>
-        <Logo />
         {/* eyebrow */}
         <div style={{ fontFamily: S.body, fontSize: 12, color: S.accent, letterSpacing: "0.14em", textTransform: "uppercase", fontWeight: 600, marginBottom: 22 }}>
           Stop Guessing Your Future
@@ -462,7 +461,6 @@ function Quiz({ onComplete }) {
       {/* scrollable content */}
       <div style={{ flex: 1, display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", paddingBottom: 100, paddingTop: 48 }}>
         <div style={{ position: "relative", width: "100%", maxWidth: 700 }}>
-          <Logo style={{ marginBottom: 8 }} />
           {/* progress */}
           <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 10 }}>
             <div style={{ fontFamily: S.body, fontSize: 12, color: S.dim, letterSpacing: "0.08em", textTransform: "uppercase" }}>Question {current + 1} of {questions.length}</div>
@@ -578,7 +576,6 @@ function EmailGate({ scores, onSubmit }) {
       <div style={{ position: "absolute", top: "30%", left: "50%", transform: "translateX(-50%)", width: 600, height: 400, borderRadius: "50%", background: "radial-gradient(circle, rgba(59,130,246,0.07) 0%, transparent 70%)", filter: "blur(60px)", pointerEvents: "none" }} />
       <div style={{ position: "relative", maxWidth: 480, width: "100%", opacity: mounted ? 1 : 0, transform: mounted ? "translateY(0)" : "translateY(24px)", transition: "opacity 0.6s ease, transform 0.6s ease" }}>
         <div style={{ textAlign: "center", marginBottom: 32 }}>
-          <Logo />
           <div style={{ display: "inline-flex", alignItems: "center", justifyContent: "center", width: 52, height: 52, borderRadius: 14, background: "rgba(59,130,246,0.12)", border: "1px solid rgba(59,130,246,0.25)", fontSize: 22, marginBottom: 22 }}>🔍</div>
           <h2 style={{ fontFamily: S.display, fontSize: "clamp(26px, 5vw, 36px)", fontWeight: 800, color: S.text, lineHeight: 1.1, marginBottom: 12, letterSpacing: "-0.02em" , textTransform: "uppercase" }}>
             Your results are ready.
@@ -640,8 +637,6 @@ function Results({ scores }) {
       </div>
 
       <div style={{ position: "relative", maxWidth: 700, margin: "0 auto" }}>
-        <Logo />
-
         {/* ── TOP RESULT CARD — identity only ── */}
         <div style={{ ...fade(1), ...card({ border: `1px solid ${career.color}35`, boxShadow: `0 0 56px ${career.color}14, 0 20px 56px rgba(0,0,0,0.4)`, marginBottom: 14, position: "relative", overflow: "hidden" }) }}>
           <div style={{ position: "absolute", top: 0, left: 0, right: 0, height: 3, background: `linear-gradient(90deg, transparent, ${career.color}, transparent)` }} />
@@ -824,24 +819,24 @@ function Results({ scores }) {
 
 
 // ── ADA ACCESSIBILITY TOOLBAR ─────────────────────────────────────────────────
-function ADAToolbar({ darkMode, onToggleDark }) {
-  const [open, setOpen]               = useState(false);
-  const [biggerText, setBiggerText]   = useState(false);
+function ADAToolbar() {
+  const [open, setOpen]                 = useState(false);
+  const [biggerText, setBiggerText]     = useState(false);
   const [highContrast, setHighContrast] = useState(false);
   const [highlightLinks, setHighlightLinks] = useState(false);
   const [dyslexiaFont, setDyslexiaFont] = useState(false);
-  const [textSpacing, setTextSpacing] = useState(false);
-  const [grayscale, setGrayscale]     = useState(false);
+  const [textSpacing, setTextSpacing]   = useState(false);
+  const [grayscale, setGrayscale]       = useState(false);
 
   useEffect(() => {
     const html = document.documentElement;
     html.style.setProperty("--ada-text-scale", biggerText ? "120%" : "100%");
-    html.classList.toggle("ada-text-scaled",   biggerText);
-    html.classList.toggle("ada-high-contrast", highContrast);
+    html.classList.toggle("ada-text-scaled",    biggerText);
+    html.classList.toggle("ada-high-contrast",  highContrast);
     html.classList.toggle("ada-highlight-links", highlightLinks);
-    html.classList.toggle("ada-dyslexia",      dyslexiaFont);
-    html.classList.toggle("ada-text-spacing",  textSpacing);
-    html.classList.toggle("ada-grayscale",     grayscale);
+    html.classList.toggle("ada-dyslexia",       dyslexiaFont);
+    html.classList.toggle("ada-text-spacing",   textSpacing);
+    html.classList.toggle("ada-grayscale",      grayscale);
   }, [biggerText, highContrast, highlightLinks, dyslexiaFont, textSpacing, grayscale]);
 
   const resetAll = () => {
@@ -849,32 +844,53 @@ function ADAToolbar({ darkMode, onToggleDark }) {
     setDyslexiaFont(false); setTextSpacing(false); setGrayscale(false);
   };
 
-  // Inline SVG icons (no lucide dependency needed)
-  const icons = {
-    person: <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="7" r="1.5" fill="currentColor" stroke="none"/><line x1="12" y1="10" x2="12" y2="16"/><line x1="8.5" y1="12" x2="15.5" y2="12"/><line x1="9.5" y1="19" x2="12" y2="16"/><line x1="14.5" y1="19" x2="12" y2="16"/></svg>,
-    close: <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M18 6L6 18M6 6l12 12"/></svg>,
-    zoom: <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35M11 8v6M8 11h6"/></svg>,
-    eye: <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>,
-    link: <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M10 13a5 5 0 007.54.54l3-3a5 5 0 00-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 00-7.54-.54l-3 3a5 5 0 007.07 7.07l1.71-1.71"/></svg>,
-    book: <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M4 19.5A2.5 2.5 0 016.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z"/></svg>,
-    type: <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="4 7 4 4 20 4 20 7"/><line x1="9" y1="20" x2="15" y2="20"/><line x1="12" y1="4" x2="12" y2="20"/></svg>,
-    palette: <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="13.5" cy="6.5" r=".5"/><circle cx="17.5" cy="10.5" r=".5"/><circle cx="8.5" cy="7.5" r=".5"/><circle cx="6.5" cy="12.5" r=".5"/><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10c.926 0 1.648-.746 1.648-1.688 0-.437-.18-.835-.437-1.125-.29-.289-.438-.652-.438-1.125a1.64 1.64 0 011.668-1.668h1.996c3.051 0 5.555-2.503 5.555-5.554C21.965 6.012 17.461 2 12 2z"/></svg>,
-    refresh: <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 102.13-9.36L1 10"/></svg>,
-    moon: <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>,
-    sun: <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>,
+  // Stick-figure accessibility icon (arms out, no outer circle) — matches screenshot
+  const FigureIcon = ({ size = 24, color = "currentColor" }) => (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" aria-hidden="true">
+      <circle cx="12" cy="4.5" r="1.8" fill={color} />
+      <line x1="12" y1="7.5" x2="12" y2="15" stroke={color} strokeWidth="2" strokeLinecap="round" />
+      <line x1="6"  y1="10"  x2="18" y2="10" stroke={color} strokeWidth="2" strokeLinecap="round" />
+      <line x1="12" y1="15" x2="8.5" y2="20" stroke={color} strokeWidth="2" strokeLinecap="round" />
+      <line x1="12" y1="15" x2="15.5" y2="20" stroke={color} strokeWidth="2" strokeLinecap="round" />
+    </svg>
+  );
+
+  // Inline SVG icons matching the panel screenshot exactly
+  const Ico = {
+    zoom:    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>,
+    eye:     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>,
+    link:    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M10 13a5 5 0 007.54.54l3-3a5 5 0 00-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 00-7.54-.54l-3 3a5 5 0 007.07 7.07l1.71-1.71"/></svg>,
+    book:    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M2 3h6a4 4 0 014 4v14a3 3 0 00-3-3H2z"/><path d="M22 3h-6a4 4 0 00-4 4v14a3 3 0 013-3h7z"/></svg>,
+    type:    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><polyline points="4 7 4 4 20 4 20 7"/><line x1="9" y1="20" x2="15" y2="20"/><line x1="12" y1="4" x2="12" y2="20"/></svg>,
+    palette: <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><circle cx="13.5" cy="6.5" r=".5" fill="currentColor"/><circle cx="17.5" cy="10.5" r=".5" fill="currentColor"/><circle cx="8.5" cy="7.5" r=".5" fill="currentColor"/><circle cx="6.5" cy="12.5" r=".5" fill="currentColor"/><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10c.926 0 1.648-.746 1.648-1.688 0-.437-.18-.835-.437-1.125-.29-.289-.438-.652-.438-1.125a1.64 1.64 0 011.668-1.668h1.996c3.051 0 5.555-2.503 5.555-5.554C21.965 6.012 17.461 2 12 2z"/></svg>,
+    refresh: <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 102.13-9.36L1 10"/></svg>,
+    close:   <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round"><path d="M18 6L6 18M6 6l12 12"/></svg>,
   };
 
   const Option = ({ active, onClick, icon, label, desc }) => (
     <button onClick={onClick} aria-pressed={active}
-      style={{ width: "100%", display: "flex", alignItems: "center", padding: "12px", borderRadius: 12, border: `1px solid ${active ? "#3b82f6" : "rgba(255,255,255,0.05)"}`, background: active ? "rgba(59,130,246,0.1)" : "rgba(255,255,255,0.02)", cursor: "pointer", textAlign: "left", transition: "all 0.15s", marginBottom: 10 }}
-      onMouseEnter={e => { if (!active) e.currentTarget.style.background = "rgba(255,255,255,0.05)"; }}
-      onMouseLeave={e => { if (!active) e.currentTarget.style.background = "rgba(255,255,255,0.02)"; }}>
-      <div style={{ flexShrink: 0, padding: 10, borderRadius: 8, marginRight: 14, background: active ? "#3b82f6" : "rgba(255,255,255,0.05)", color: active ? "#fff" : "#b8c4d4", display: "flex" }}>
+      style={{
+        display: "flex", alignItems: "center", gap: 16,
+        padding: "18px 16px", borderRadius: 14,
+        border: `1px solid ${active ? "#3b82f6" : "rgba(255,255,255,0.07)"}`,
+        background: active ? "rgba(59,130,246,0.12)" : "rgba(255,255,255,0.03)",
+        cursor: "pointer", textAlign: "left", width: "100%",
+        transition: "all 0.15s",
+      }}
+      onMouseEnter={e => { if (!active) e.currentTarget.style.background = "rgba(255,255,255,0.06)"; }}
+      onMouseLeave={e => { if (!active) e.currentTarget.style.background = "rgba(255,255,255,0.03)"; }}>
+      <div style={{
+        width: 44, height: 44, borderRadius: 10, flexShrink: 0,
+        background: active ? "#3b82f6" : "rgba(255,255,255,0.07)",
+        color: active ? "#fff" : "#94a3b8",
+        display: "flex", alignItems: "center", justifyContent: "center",
+        transition: "all 0.15s",
+      }}>
         {icon}
       </div>
       <div>
-        <div style={{ fontFamily: "'Source Sans 3', sans-serif", fontSize: 14, fontWeight: 600, color: active ? "#3b82f6" : "#f8fafc" }}>{label}</div>
-        <div style={{ fontFamily: "'Source Sans 3', sans-serif", fontSize: 12, color: "#8b9bb4", marginTop: 2 }}>{desc}</div>
+        <div style={{ fontFamily: "'Source Sans 3', sans-serif", fontSize: 15, fontWeight: 700, color: active ? "#3b82f6" : "#f8fafc", lineHeight: 1.2 }}>{label}</div>
+        <div style={{ fontFamily: "'Source Sans 3', sans-serif", fontSize: 13, color: "#6b7f99", marginTop: 3 }}>{desc}</div>
       </div>
     </button>
   );
@@ -884,49 +900,100 @@ function ADAToolbar({ darkMode, onToggleDark }) {
       {/* Panel */}
       {open && (
         <div role="dialog" aria-label="Accessibility options" aria-modal="false"
-          style={{ position: "fixed", bottom: 88, left: 16, zIndex: 9999, width: "min(600px, calc(100vw - 2rem))", maxHeight: "calc(100vh - 6rem)", display: "flex", flexDirection: "column", background: "#0b1220", border: "1px solid rgba(255,255,255,0.09)", borderRadius: 16, boxShadow: "0 8px 40px rgba(0,0,0,0.5)", overflow: "hidden" }}>
+          style={{
+            position: "fixed", bottom: 88, left: 16, zIndex: 9999,
+            width: "min(660px, calc(100vw - 2rem))",
+            maxHeight: "calc(100vh - 7rem)",
+            display: "flex", flexDirection: "column",
+            background: "#0d1526",
+            border: "1px solid rgba(255,255,255,0.09)",
+            borderRadius: 20,
+            boxShadow: "0 16px 60px rgba(0,0,0,0.6)",
+            overflow: "hidden",
+          }}>
           {/* Header */}
-          <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", padding: "16px 18px", borderBottom: "1px solid rgba(255,255,255,0.09)", background: "#020617", flexShrink: 0 }}>
-            <div style={{ display: "flex", alignItems: "center", gap: 8, fontFamily: "'Source Sans 3', sans-serif", fontSize: 15, fontWeight: 600, color: "#f8fafc" }}>
-              <span style={{ color: "#3b82f6" }}>{icons.person}</span>
-              Accessibility Menu
+          <div style={{
+            display: "flex", alignItems: "center", justifyContent: "space-between",
+            padding: "20px 22px",
+            background: "#080f1e",
+            borderBottom: "1px solid rgba(255,255,255,0.08)",
+            flexShrink: 0,
+          }}>
+            <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
+              <span style={{ color: "#3b82f6", display: "flex" }}>
+                <FigureIcon size={22} color="#3b82f6" />
+              </span>
+              <span style={{ fontFamily: "'Source Sans 3', sans-serif", fontSize: 17, fontWeight: 700, color: "#f8fafc" }}>
+                Accessibility Menu
+              </span>
             </div>
             <button onClick={() => setOpen(false)} aria-label="Close accessibility menu"
-              style={{ background: "none", border: "none", cursor: "pointer", color: "#6b7f99", display: "flex", padding: 4, transition: "color 0.15s" }}
+              style={{ background: "none", border: "none", cursor: "pointer", color: "#6b7f99", display: "flex", padding: 4, borderRadius: 6, transition: "color 0.15s" }}
               onMouseEnter={e => e.currentTarget.style.color = "#f8fafc"}
               onMouseLeave={e => e.currentTarget.style.color = "#6b7f99"}>
-              {icons.close}
+              {Ico.close}
             </button>
           </div>
-          {/* Options grid */}
-          <div style={{ padding: 16, overflowY: "auto", flex: 1, display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(240px, 1fr))", gap: 0 }}>
-            <Option active={biggerText}    onClick={() => setBiggerText(v => !v)}     icon={icons.zoom}    label="Bigger Text"       desc="Increase overall font size" />
-            <Option active={highContrast}  onClick={() => setHighContrast(v => !v)}   icon={icons.eye}     label="High Contrast"     desc="Enhance color contrast" />
-            <Option active={highlightLinks} onClick={() => setHighlightLinks(v => !v)} icon={icons.link}   label="Highlight Links"   desc="Make links more visible" />
-            <Option active={dyslexiaFont}  onClick={() => setDyslexiaFont(v => !v)}   icon={icons.book}    label="Dyslexia Friendly" desc="Switch to readable font" />
-            <Option active={textSpacing}   onClick={() => setTextSpacing(v => !v)}    icon={icons.type}    label="Text Spacing"      desc="Increase letter & word spacing" />
-            <Option active={grayscale}     onClick={() => setGrayscale(v => !v)}      icon={icons.palette} label="Grayscale"         desc="Remove colors from the page" />
 
+          {/* 2-column options grid */}
+          <div style={{
+            padding: "18px 18px 12px",
+            display: "grid",
+            gridTemplateColumns: "1fr 1fr",
+            gap: 10,
+            overflowY: "auto", flex: 1,
+          }}>
+            <Option active={biggerText}    onClick={() => setBiggerText(v => !v)}     icon={Ico.zoom}    label="Bigger Text"       desc="Increase overall font size" />
+            <Option active={highContrast}  onClick={() => setHighContrast(v => !v)}   icon={Ico.eye}     label="High Contrast"     desc="Enhance color contrast" />
+            <Option active={highlightLinks} onClick={() => setHighlightLinks(v => !v)} icon={Ico.link}   label="Highlight Links"   desc="Make links more visible" />
+            <Option active={dyslexiaFont}  onClick={() => setDyslexiaFont(v => !v)}   icon={Ico.book}    label="Dyslexia Friendly" desc="Switch to readable font" />
+            <Option active={textSpacing}   onClick={() => setTextSpacing(v => !v)}    icon={Ico.type}    label="Text Spacing"      desc="Increase letter & word spacing" />
+            <Option active={grayscale}     onClick={() => setGrayscale(v => !v)}      icon={Ico.palette} label="Grayscale"         desc="Remove colors from the page" />
           </div>
-          {/* Footer reset */}
-          <div style={{ padding: "14px 16px", borderTop: "1px solid rgba(255,255,255,0.09)", background: "#020617", flexShrink: 0 }}>
+
+          {/* Reset footer */}
+          <div style={{
+            padding: "14px 18px 18px",
+            borderTop: "1px solid rgba(255,255,255,0.08)",
+            background: "#080f1e",
+            flexShrink: 0,
+          }}>
             <button onClick={resetAll}
-              style={{ width: "100%", display: "flex", alignItems: "center", justifyContent: "center", gap: 8, padding: "10px", background: "rgba(255,255,255,0.05)", border: "none", borderRadius: 8, fontFamily: "'Source Sans 3', sans-serif", fontSize: 14, fontWeight: 500, color: "#f8fafc", cursor: "pointer", transition: "background 0.15s" }}
+              style={{
+                width: "100%", display: "flex", alignItems: "center", justifyContent: "center", gap: 8,
+                padding: "14px",
+                background: "rgba(255,255,255,0.05)",
+                border: "1px solid rgba(255,255,255,0.08)",
+                borderRadius: 10,
+                fontFamily: "'Source Sans 3', sans-serif", fontSize: 14, fontWeight: 600,
+                color: "#f8fafc", cursor: "pointer", transition: "background 0.15s",
+              }}
               onMouseEnter={e => e.currentTarget.style.background = "rgba(255,255,255,0.1)"}
               onMouseLeave={e => e.currentTarget.style.background = "rgba(255,255,255,0.05)"}>
-              {icons.refresh} Reset Settings
+              {Ico.refresh}
+              Reset Settings
             </button>
           </div>
         </div>
       )}
-      {/* Trigger — always bottom-left */}
-      <button onClick={() => setOpen(o => !o)}
+
+      {/* Trigger button — always bottom-left, stick figure icon */}
+      <button
+        onClick={() => setOpen(o => !o)}
         aria-label={open ? "Close accessibility menu" : "Open accessibility menu"}
-        aria-expanded={open} aria-haspopup="dialog"
-        style={{ position: "fixed", bottom: 24, left: 24, zIndex: 9999, width: 52, height: 52, borderRadius: "50%", background: "#3b82f6", border: "none", cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center", color: "#fff", boxShadow: "0 4px 20px rgba(59,130,246,0.5)", transition: "transform 0.15s, box-shadow 0.15s" }}
-        onMouseEnter={e => { e.currentTarget.style.transform = "scale(1.08)"; e.currentTarget.style.boxShadow = "0 6px 28px rgba(59,130,246,0.65)"; }}
-        onMouseLeave={e => { e.currentTarget.style.transform = "scale(1)"; e.currentTarget.style.boxShadow = "0 4px 20px rgba(59,130,246,0.5)"; }}>
-        {icons.person}
+        aria-expanded={open}
+        aria-haspopup="dialog"
+        style={{
+          position: "fixed", bottom: 24, left: 24, zIndex: 9999,
+          width: 56, height: 56, borderRadius: "50%",
+          background: "#3b82f6", border: "none", cursor: "pointer",
+          display: "flex", alignItems: "center", justifyContent: "center",
+          boxShadow: "0 4px 24px rgba(59,130,246,0.55)",
+          transition: "transform 0.15s, box-shadow 0.15s",
+        }}
+        onMouseEnter={e => { e.currentTarget.style.transform = "scale(1.08)"; e.currentTarget.style.boxShadow = "0 6px 32px rgba(59,130,246,0.7)"; }}
+        onMouseLeave={e => { e.currentTarget.style.transform = "scale(1)"; e.currentTarget.style.boxShadow = "0 4px 24px rgba(59,130,246,0.55)"; }}>
+        <FigureIcon size={26} color="#fff" />
       </button>
     </>
   );
@@ -974,7 +1041,7 @@ export default function App() {
         {screen === "loading" && <Loading onDone={() => setScreen("results")} />}
         {screen === "results" && <Results scores={scores} />}
       </main>
-      <ADAToolbar darkMode={darkMode} onToggleDark={() => setDarkMode(d => !d)} />
+      <ADAToolbar />
     </div>
     </ThemeCtx.Provider>
   );
