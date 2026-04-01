@@ -736,7 +736,7 @@ function Results({ scores }) {
 
         {/* ── WHY THIS IS YOUR PATH ── */}
         <div style={{ ...fade(2, 0), ...card() }}>
-          <div style={{ fontFamily: S.body, fontSize: 11, color: career.color, letterSpacing: "0.14em", textTransform: "uppercase", fontWeight: 700, marginBottom: 14 }}>📊 Why This Is Your Path</div>
+          <div style={{ fontFamily: S.body, fontSize: 11, color: career.color, letterSpacing: "0.14em", textTransform: "uppercase", fontWeight: 700, marginBottom: 14 }}>🔍 Why This Is Your Path</div>
           <p style={{ fontFamily: S.body, fontSize: 15, color: "#cbd5e1", lineHeight: 1.72, margin: 0 }}>{career.whyYou}</p>
         </div>
 
@@ -851,7 +851,7 @@ function ADAToolbar({ darkMode, onToggleDark }) {
 
   // Inline SVG icons (no lucide dependency needed)
   const icons = {
-    person: <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="5" r="1.5"/><path d="M8 9h8l-1 5h-2.5v6h-1V14H9l-1-5z"/><path d="M10 14l-1.5 4M14 14l1.5 4"/></svg>,
+    person: <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="7" r="1.5" fill="currentColor" stroke="none"/><line x1="12" y1="10" x2="12" y2="16"/><line x1="8.5" y1="12" x2="15.5" y2="12"/><line x1="9.5" y1="19" x2="12" y2="16"/><line x1="14.5" y1="19" x2="12" y2="16"/></svg>,
     close: <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M18 6L6 18M6 6l12 12"/></svg>,
     zoom: <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35M11 8v6M8 11h6"/></svg>,
     eye: <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>,
@@ -906,7 +906,7 @@ function ADAToolbar({ darkMode, onToggleDark }) {
             <Option active={dyslexiaFont}  onClick={() => setDyslexiaFont(v => !v)}   icon={icons.book}    label="Dyslexia Friendly" desc="Switch to readable font" />
             <Option active={textSpacing}   onClick={() => setTextSpacing(v => !v)}    icon={icons.type}    label="Text Spacing"      desc="Increase letter & word spacing" />
             <Option active={grayscale}     onClick={() => setGrayscale(v => !v)}      icon={icons.palette} label="Grayscale"         desc="Remove colors from the page" />
-            <Option active={!darkMode}     onClick={onToggleDark}                     icon={darkMode ? icons.sun : icons.moon} label={darkMode ? "Light Mode" : "Dark Mode"} desc="Toggle light/dark theme" />
+
           </div>
           {/* Footer reset */}
           <div style={{ padding: "14px 16px", borderTop: "1px solid rgba(255,255,255,0.09)", background: "#020617", flexShrink: 0 }}>
