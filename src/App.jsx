@@ -386,6 +386,10 @@ function Hero({ onStart }) {
       </div>
 
       <div style={{ position: "relative", maxWidth: 700, width: "100%", textAlign: "center", opacity: in_ ? 1 : 0, transform: in_ ? "translateY(0)" : "translateY(28px)", transition: "opacity 0.8s ease, transform 0.8s ease" }}>
+        {/* centered logo */}
+        <div style={{ display: "flex", justifyContent: "center", marginBottom: 36 }}>
+          <img src="/logo.png" alt="Ascend Modern Career Guidance" style={{ height: 48, width: "auto", objectFit: "contain" }} />
+        </div>
         {/* eyebrow */}
         <div style={{ fontFamily: S.body, fontSize: 12, color: S.accent, letterSpacing: "0.14em", textTransform: "uppercase", fontWeight: 600, marginBottom: 22 }}>
           Stop Guessing Your Future
@@ -463,7 +467,13 @@ function Quiz({ onComplete }) {
         <div style={{ position: "relative", width: "100%", maxWidth: 700 }}>
           {/* progress */}
           <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 10 }}>
-            <div style={{ fontFamily: S.body, fontSize: 12, color: S.dim, letterSpacing: "0.08em", textTransform: "uppercase" }}>Question {current + 1} of {questions.length}</div>
+            <div style={{ display: "flex", alignItems: "center", gap: 16 }}>
+              <a href="http://ascendcareerguidance.com" style={{ display: "flex", lineHeight: 0, flexShrink: 0 }}>
+                <img src="/logo.png" alt="Ascend" style={{ height: 28, width: "auto", objectFit: "contain" }} />
+              </a>
+              <div style={{ width: 1, height: 16, background: S.border }} />
+              <div style={{ fontFamily: S.body, fontSize: 12, color: S.dim, letterSpacing: "0.08em", textTransform: "uppercase" }}>Question {current + 1} of {questions.length}</div>
+            </div>
             <div style={{ fontFamily: S.display, fontSize: 20, fontWeight: 800, color: S.accent , textTransform: "uppercase" }}>{Math.round(progress)}%</div>
           </div>
           <div style={{ height: 2, background: S.border, borderRadius: 2, marginBottom: 44, overflow: "hidden" }}>
@@ -1021,12 +1031,30 @@ export default function App() {
     .cta-grid { flex-direction: row !important; align-items: stretch; }
     .cta-grid > * { flex: 1; min-width: 0; }
   }
+  /* Load OpenDyslexic for dyslexia mode */
+  @import url('https://fonts.googleapis.com/css2?family=Lexend:wght@400;500;600;700&display=swap');
   /* ADA feature classes */
-  .ada-text-scaled * { font-size: calc(1em * var(--ada-text-scale, 100%) / 100) !important; }
-  html.ada-high-contrast { filter: contrast(1.5) brightness(1.08); }
-  html.ada-highlight-links a { outline: 2px solid #f59e0b !important; outline-offset: 2px; text-decoration: underline !important; }
-  html.ada-dyslexia * { font-family: "Arial", sans-serif !important; letter-spacing: 0.05em !important; word-spacing: 0.1em !important; }
-  html.ada-text-spacing * { letter-spacing: 0.12em !important; word-spacing: 0.16em !important; line-height: 1.9 !important; }
+  /* Bigger text: scale root font size so all rem/em units grow proportionally */
+  html.ada-text-scaled { font-size: 120% !important; }
+  html.ada-high-contrast { filter: contrast(1.6) brightness(1.1); }
+  /* Highlight links: covers both <a> tags and elements with role=link */
+  html.ada-highlight-links a,
+  html.ada-highlight-links [role="link"] {
+    outline: 3px solid #f59e0b !important;
+    outline-offset: 3px !important;
+    text-decoration: underline !important;
+    text-decoration-color: #f59e0b !important;
+    border-radius: 2px;
+  }
+  /* Dyslexia: Lexend is specifically designed for reading ease */
+  html.ada-dyslexia,
+  html.ada-dyslexia * {
+    font-family: 'Lexend', sans-serif !important;
+    letter-spacing: 0.06em !important;
+    word-spacing: 0.18em !important;
+    line-height: 1.8 !important;
+  }
+  html.ada-text-spacing * { letter-spacing: 0.14em !important; word-spacing: 0.2em !important; line-height: 2 !important; }
   html.ada-grayscale { filter: grayscale(100%); }
   /* Focus outlines for keyboard nav */
   :focus-visible { outline: 2px solid #3b82f6 !important; outline-offset: 3px !important; }
