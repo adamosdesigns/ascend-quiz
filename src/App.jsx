@@ -434,7 +434,7 @@ function Hero({ onStart }) {
   useEffect(() => { setTimeout(() => setIn(true), 60); }, []);
 
   return (
-    <div style={{ minHeight: "100vh", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", padding: "48px 24px", position: "relative", overflow: "hidden" }}>
+    <div style={{ minHeight: "100vh", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "flex-start", padding: "48px 24px 80px", position: "relative", overflow: "hidden" }}>
       {/* ambient bg */}
       <div style={{ position: "absolute", inset: 0, overflow: "hidden", pointerEvents: "none" }}>
         <div style={{ position: "absolute", top: "15%", left: "8%", width: 560, height: 560, borderRadius: "50%", background: `radial-gradient(circle, ${S.accent}22 0%, transparent 70%)`, filter: "blur(48px)" }} />
@@ -516,11 +516,11 @@ function Quiz({ onComplete }) {
   const letters = ["A", "B", "C", "D"];
 
   return (
-    <div style={{ minHeight: "100vh", display: "flex", flexDirection: "column", padding: "0 24px", position: "relative" }}>
+    <div style={{ minHeight: "100vh", display: "flex", flexDirection: "column", padding: "48px 24px 0", position: "relative" }}>
       <div style={{ position: "absolute", inset: 0, backgroundImage: "linear-gradient(rgba(255,255,255,0.015) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.015) 1px, transparent 1px)", backgroundSize: "60px 60px", pointerEvents: "none" }} />
 
       {/* scrollable content */}
-      <div style={{ flex: 1, display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", paddingBottom: 100, paddingTop: 48 }}>
+      <div style={{ flex: 1, display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "flex-start", paddingBottom: 100, paddingTop: 0 }}>
         <div style={{ position: "relative", width: "100%", maxWidth: 700 }}>
           {/* progress */}
           <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 10 }}>
@@ -597,8 +597,8 @@ function Loading({ onDone }) {
     return () => clearInterval(t);
   }, []);
   return (
-    <div style={{ minHeight: "100vh", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", padding: 40 }}>
-      <div style={{ textAlign: "center", maxWidth: 360 }}>
+    <div style={{ minHeight: "100vh", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "flex-start", padding: "48px 24px 80px" }}>
+      <div style={{ textAlign: "center", maxWidth: 360, marginTop: "20vh" }}>
         <div style={{ position: "relative", width: 72, height: 72, margin: "0 auto 36px" }}>
           <div style={{ position: "absolute", inset: 0, borderRadius: "50%", border: "2px solid rgba(255,255,255,0.06)" }} />
           <div style={{ position: "absolute", inset: 0, borderRadius: "50%", border: "2px solid transparent", borderTopColor: S.accent, animation: "spin 1s linear infinite" }} />
@@ -637,9 +637,9 @@ function EmailGate({ scores, onSubmit }) {
   const inp = { width: "100%", background: S.bgCard, border: `1px solid ${S.border}`, borderRadius: 10, padding: "14px 16px", fontSize: 15, fontFamily: S.body, color: S.text, outline: "none", boxSizing: "border-box", transition: "border 0.18s" };
 
   return (
-    <div style={{ minHeight: "100vh", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", padding: "48px 24px", position: "relative" }}>
+    <div style={{ minHeight: "100vh", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "flex-start", padding: "48px 24px 80px", position: "relative" }}>
       <div style={{ position: "absolute", top: "30%", left: "50%", transform: "translateX(-50%)", width: 600, height: 400, borderRadius: "50%", background: "radial-gradient(circle, rgba(59,130,246,0.07) 0%, transparent 70%)", filter: "blur(60px)", pointerEvents: "none" }} />
-      <div style={{ position: "relative", maxWidth: 480, width: "100%", opacity: mounted ? 1 : 0, transform: mounted ? "translateY(0)" : "translateY(24px)", transition: "opacity 0.6s ease, transform 0.6s ease" }}>
+      <div style={{ position: "relative", maxWidth: 480, width: "100%", marginTop: "8vh", opacity: mounted ? 1 : 0, transform: mounted ? "translateY(0)" : "translateY(24px)", transition: "opacity 0.6s ease, transform 0.6s ease" }}>
         <div style={{ textAlign: "center", marginBottom: 32 }}>
           <div style={{ display: "inline-flex", alignItems: "center", justifyContent: "center", width: 52, height: 52, borderRadius: 14, background: "rgba(59,130,246,0.12)", border: "1px solid rgba(59,130,246,0.25)", fontSize: 22, marginBottom: 22 }}>🔍</div>
           <h2 style={{ fontFamily: S.display, fontSize: "clamp(26px, 5vw, 36px)", fontWeight: 800, color: S.text, lineHeight: 1.1, marginBottom: 12, letterSpacing: "-0.02em" , textTransform: "uppercase" }}>
@@ -695,7 +695,7 @@ function Results({ scores }) {
   const card = (extra={}) => ({ background: S.bgCard, border: `1px solid ${S.border}`, borderRadius: 18, padding: "28px 32px", marginBottom: 14, ...extra });
 
   return (
-    <div style={{ minHeight: "100vh", padding: "56px 24px 80px", position: "relative", overflow: "hidden" }}>
+    <div style={{ minHeight: "100vh", padding: "48px 24px 80px", position: "relative", overflow: "hidden" }}>
       <div style={{ position: "fixed", inset: 0, pointerEvents: "none" }}>
         <div style={{ position: "absolute", top: "8%", right: "4%", width: 560, height: 560, borderRadius: "50%", background: `radial-gradient(circle, ${career.color}18 0%, transparent 70%)`, filter: "blur(80px)" }} />
         <div style={{ position: "absolute", bottom: "8%", left: "4%", width: 380, height: 380, borderRadius: "50%", background: "radial-gradient(circle, rgba(59,130,246,0.07) 0%, transparent 70%)", filter: "blur(60px)" }} />
