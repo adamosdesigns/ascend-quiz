@@ -718,6 +718,13 @@ function Results({ scores }) {
         {/* ── PRIMARY PRICING TIERS — immediately after result ── */}
         <div style={{ ...fade(1, 0.15) }}>
           <div style={{ fontFamily: S.body, fontSize: 11, color: S.dim, letterSpacing: "0.14em", textTransform: "uppercase", fontWeight: 600, marginBottom: 12, paddingLeft: 2 }}>🎯 Get Your {career.name} Roadmap</div>
+          {/* iOS disclaimer */}
+          <div style={{ background: "rgba(251,191,36,0.08)", border: "1px solid rgba(251,191,36,0.25)", borderRadius: 10, padding: "12px 16px", marginBottom: 12, display: "flex", gap: 10, alignItems: "flex-start" }}>
+            <span style={{ fontSize: 15, flexShrink: 0, marginTop: 1 }}>📱</span>
+            <p style={{ fontFamily: S.body, fontSize: 12, color: "#fbbf24", lineHeight: 1.6, margin: 0 }}>
+              <strong>Important Note for iOS Users:</strong> If you are using the Whop iOS app, you may see a higher price due to Apple's 30% in-app purchase fee. To avoid this markup and get the standard price shown below, please complete your purchase using your mobile or desktop web browser.
+            </p>
+          </div>
           <div className="cta-grid" style={{ display: "flex", flexDirection: "column", gap: 12 }}>
 
             {/* Core card */}
@@ -819,6 +826,13 @@ function Results({ scores }) {
   
           </div>
           {/* Condensed Core + Pro links for runner-up */}
+          {/* iOS disclaimer — runner-up */}
+          <div style={{ background: "rgba(251,191,36,0.08)", border: "1px solid rgba(251,191,36,0.25)", borderRadius: 10, padding: "12px 16px", marginBottom: 12, display: "flex", gap: 10, alignItems: "flex-start" }}>
+            <span style={{ fontSize: 15, flexShrink: 0, marginTop: 1 }}>📱</span>
+            <p style={{ fontFamily: S.body, fontSize: 12, color: "#fbbf24", lineHeight: 1.6, margin: 0 }}>
+              <strong>Important Note for iOS Users:</strong> If you are using the Whop iOS app, you may see a higher price due to Apple's 30% in-app purchase fee. To avoid this markup and get the standard price shown below, please complete your purchase using your mobile or desktop web browser.
+            </p>
+          </div>
           <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 10 }}>
             <a href={runner.coreUrl} target="_blank" rel="noopener noreferrer"
               style={{ display: "flex", flexDirection: "column", gap: 4, background: S.bgCard, border: `1px solid ${S.border}`, borderRadius: 10, padding: "14px 16px", textDecoration: "none", transition: "all 0.15s" }}
